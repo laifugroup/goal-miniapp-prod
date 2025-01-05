@@ -1,0 +1,13 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 背景圆圈 -->
+    <circle cx="60" cy="60" r="60" fill="#E0E0E0"/>
+    
+    <!-- 头部 -->
+    <circle cx="60" cy="45" r="20" fill="#BDBDBD"/>
+    
+    <!-- 身体 -->
+    <path 
+        d="M60 70C44.536 70 32 82.536 32 98C32 106.837 60 106.837 60 106.837C60 106.837 88 106.837 88 98C88 82.536 75.464 70 60 70Z" 
+        fill="#BDBDBD"
+    />
+</svg> 

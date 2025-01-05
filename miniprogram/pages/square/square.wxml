@@ -1,3 +1,27 @@
 <view class="container">
-    <text>广场</text>
-</view> 
+    <view class="banner-container">
+        <swiper class="banner-swiper" indicator-dots autoplay circular>
+            <block wx:for="{{banners}}" wx:key="id">
+                <swiper-item>
+                    <image 
+                        class="banner-image" 
+                        src="{{item.imageUrl}}" 
+                        mode="aspectFill"
+                        bindload="onImageLoad"
+                    />
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+
+    <view class="quick-actions">
+        <view class="quick-actions-grid">
+            <block wx:for="{{quickActions}}" wx:key="id">
+                <view class="quick-action-item" bindtap="navigateTo" data-path="{{item.path}}">
+                    <text class="icon">{{item.icon}}</text>
+                    <text class="title">{{item.title}}</text>
+                </view>
+            </block>
+        </view>
+    </view>
+</view>

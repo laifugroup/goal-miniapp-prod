@@ -1,5 +1,7 @@
 {
+  "entryPagePath": "pages/launch/launch",
   "pages": [
+    "pages/settings/index",
     "pages/launch/launch",
     "pages/login/login",
     "pages/square/square",
@@ -9,7 +11,10 @@
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
+    "navigationStyle": "default",
+    "navigationBarTitleText": "打卡",
+    "enablePullDownRefresh": false,
+    "navigationBarBackgroundColor": "#fff"
   },
   "style": "v2",
   "rendererOptions": {
@@ -55,5 +60,8 @@
         "selectedIconPath": "assets/images/tab/profile-active.png"
       }
     ]
+  },
+  "usingComponents": {
+    
   }
 }

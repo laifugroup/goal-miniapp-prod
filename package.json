@@ -1,12 +1,12 @@
 {
-  "name": "miniprogram-ts-sass-quickstart",
+  "name": "goal-miniapp-prod",
   "version": "1.0.0",
-  "description": "",
+  "description": "目标打卡",
   "scripts": {
   },
   "keywords": [],
-  "author": "",
-  "license": "",
+  "author": "jiliapp",
+  "license": "private",
   "dependencies": {
   },
   "devDependencies": {
