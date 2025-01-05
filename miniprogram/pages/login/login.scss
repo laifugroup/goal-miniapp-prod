@@ -1,0 +1,30 @@
+.login-container {
+    padding: 40rpx;
+    
+    .login-form {
+        margin-top: 100rpx;
+        
+        .input-group {
+            margin-bottom: 30rpx;
+            
+            input {
+                width: 100%;
+                height: 88rpx;
+                border: 1px solid #ddd;
+                border-radius: 8rpx;
+                padding: 0 20rpx;
+                box-sizing: border-box;
+            }
+        }
+        
+        .login-btn {
+            margin-top: 60rpx;
+            background: #07c160;
+            color: #fff;
+            
+            &:active {
+                opacity: 0.8;
+            }
+        }
+    }
+} 
