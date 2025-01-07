@@ -41,7 +41,7 @@ Page({
                     icon: 'success'
                 });
                 wx.reLaunch({
-                    url: '/pages/index/index'
+                    url: '/pages/square/square'
                 });
             } else {
                 wx.showToast({

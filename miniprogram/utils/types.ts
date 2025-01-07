@@ -10,6 +10,28 @@ export interface Rsp<T> {
     data: T;
 }
 
+export interface RspPage<T> {
+    code: number;
+    message: string;
+    data: Page<T>;
+}
+
+export interface Page<T> {
+    current: number;
+    total: string;
+    records: T;
+}
+// "current": 90,
+// "total": 20,
+// "size": 11,
+// "records": 
+
+
+export interface PageParams {
+    page: number;
+    pageSize: number;
+}
+
 // 返回数据类型
 export interface LoginRsp {
     accessToken: string;
@@ -66,6 +88,15 @@ export interface MessageResponse {
         reminder: number;
         system: number;
     };
+}
+
+
+
+export interface PointItemRsp {
+    id: number;
+    title: string;
+    time: string;
+    points: number;
 }
 
 export interface UserInfo {

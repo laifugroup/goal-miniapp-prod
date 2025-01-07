@@ -1,0 +1,33 @@
+ <view class="points-container">
+    <!-- 下拉刷新 -->
+    <scroll-view 
+        scroll-y
+        refresher-enabled
+        refresher-triggered="{{refreshing}}"
+        bindrefresherrefresh="onRefresh"
+        bindscrolltolower="onReachBottom"
+    >
+        <!-- 积分列表 -->
+        <view class="points-list">
+            <block wx:for="{{pointsList}}" wx:key="id">
+                <view class="point-item">
+                    <view class="left">
+                        <text class="title">{{item.title}}</text>
+                        <text class="time">{{item.time}}</text>
+                    </view>
+                    <view class="right">
+                          <text class="points line-ellipsis">{{item.points > 0 ? '+' : ''}}{{item.points}}积分</text>
+                    </view>
+                </view>
+            </block>
+            
+            <!-- 加载更多 -->
+            <view wx:if="{{hasMore}}" class="loading-more">
+                <text>加载中...</text>
+            </view>
+            <view wx:else class="no-more">
+                <text>没有更多数据了</text>
+            </view>
+        </view>
+    </scroll-view>
+</view>

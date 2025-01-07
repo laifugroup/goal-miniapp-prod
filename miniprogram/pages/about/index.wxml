@@ -1,0 +1,27 @@
+<view class="about-container">
+    <!-- Logo 部分 -->
+    <view class="logo-section">
+        <image class="logo" src="/assets/images/logo.svg" mode="aspectFit" />
+        <view class="app-name">打卡小程序</view>
+        <view class="version">Version {{version}}</view>
+    </view>
+
+    <!-- 信息列表 -->
+    <view class="info-list">
+        <view 
+            class="info-item" 
+            wx:for="{{items}}" 
+            wx:key="title"
+            bindtap="copyText"
+            data-text="{{item.content}}"
+        >
+            <text class="title">{{item.title}}</text>
+            <text class="content">{{item.content}}</text>
+        </view>
+    </view>
+
+    <!-- 底部版权信息 -->
+    <view class="copyright">
+        <text>Copyright © 2024 All Rights Reserved</text>
+    </view>
+</view> 

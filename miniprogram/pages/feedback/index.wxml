@@ -1,0 +1,8 @@
+<view class="feedback-container">
+    <view class="feedback-content">
+        <view class="icon">💡</view>
+        <view class="title">正在打开意见反馈...</view>
+        <view class="desc">如果没有自动打开，请点击下方按钮重试</view>
+        <button class="retry-btn" bindtap="openTXC">重新打开</button>
+    </view>
+</view>

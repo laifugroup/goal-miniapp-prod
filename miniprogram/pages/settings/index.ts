@@ -2,11 +2,12 @@ Page({
     data: {
         settingItems: [
             { id: 'notification', title: '消息通知', type: 'switch', value: true },
-            { id: 'privacy', title: '隐私设置', type: 'arrow' },
+            { id: 'privacy', title: '隐私政策', type: 'arrow' },
             { id: 'about', title: '关于我们', type: 'arrow' },
             { id: 'feedback', title: '意见反馈', type: 'arrow' },
             { id: 'clear', title: '清除缓存', type: 'arrow' }
-        ]
+        ],
+        txcAppId: 'wx8abaf00ee8c3202e'  // 兔小巢小程序 appId
     },
 
     onSwitchChange(e: any) {
@@ -21,18 +22,34 @@ Page({
         // 处理点击事件
         switch (id) {
             case 'privacy':
-                wx.navigateTo({ url: '/pages/settings/privacy/index' });
+                wx.navigateTo({ url: '/pages/privacy/index' });
                 break;
             case 'about':
-                wx.navigateTo({ url: '/pages/settings/about/index' });
+                wx.navigateTo({ url: '/pages/about/index' });
                 break;
             case 'feedback':
-                wx.navigateTo({ url: '/pages/settings/feedback/index' });
+                this.openFeedback();
                 break;
             case 'clear':
                 this.clearCache();
                 break;
         }
+    },
+
+    // 打开兔小巢反馈
+    openFeedback() {
+
+        wx.openEmbeddedMiniProgram({
+            appId: this.data.txcAppId,
+            extraData :{
+              // 把1368数字换成你的产品ID，否则会跳到别的产品
+              id : "681245",
+              // 自定义参数，具体参考文档
+              customData : {
+                  clientInfo: `iPhone OS 10.3.1 / 3.2.0.43 / 0`,
+              }
+            }
+          })
     },
 
     clearCache() {

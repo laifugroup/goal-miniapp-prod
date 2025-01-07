@@ -1,0 +1,57 @@
+ .points-container {
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.points-list {
+    padding: 20rpx;
+}
+
+.point-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30rpx;
+    margin-bottom: 20rpx;
+    background-color: #fff;
+    border-radius: 10rpx;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 32rpx;
+    color: #333;
+    margin-bottom: 10rpx;
+}
+
+.time {
+    font-size: 24rpx;
+    color: #999;
+}
+
+.right .points {
+    font-size: 32rpx;
+    color: #07C160;
+}
+
+
+.line-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+
+
+.loading-more,
+.no-more {
+    text-align: center;
+    padding: 30rpx;
+    font-size: 28rpx;
+    color: #999;
+}

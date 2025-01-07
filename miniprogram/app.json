@@ -7,7 +7,10 @@
     "pages/square/square",
     "pages/checkin/checkin",
     "pages/message/message",
-    "pages/profile/profile"
+    "pages/profile/profile",
+    "pages/about/index",
+    "pages/privacy/index",
+    "pages/points/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

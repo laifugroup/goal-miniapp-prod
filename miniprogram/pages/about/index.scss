@@ -1,0 +1,75 @@
+.about-container {
+    min-height: 100vh;
+    background: #f5f5f5;
+    padding: 20rpx;
+    display: flex;
+    flex-direction: column;
+
+    .logo-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 60rpx 0;
+        background: #fff;
+        border-radius: 16rpx;
+        margin-bottom: 20rpx;
+
+        .logo {
+            width: 120rpx;
+            height: 120rpx;
+            margin-bottom: 20rpx;
+        }
+
+        .app-name {
+            font-size: 32rpx;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8rpx;
+        }
+
+        .version {
+            font-size: 24rpx;
+            color: #999;
+        }
+    }
+
+    .info-list {
+        background: #fff;
+        border-radius: 16rpx;
+        overflow: hidden;
+        flex: 1;
+        margin-bottom: 40rpx;
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30rpx;
+            border-bottom: 1rpx solid #eee;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .title {
+                font-size: 28rpx;
+                color: #333;
+            }
+
+            .content {
+                font-size: 28rpx;
+                color: #666;
+            }
+        }
+    }
+
+    .copyright {
+        text-align: center;
+        padding: 30rpx 0 50rpx;
+        color: #999;
+        font-size: 24rpx;
+        margin-top: auto;
+        position: relative;
+        bottom: env(safe-area-inset-bottom);
+    }
+} 

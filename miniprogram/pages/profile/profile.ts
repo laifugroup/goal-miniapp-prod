@@ -12,11 +12,21 @@ Page({
             { id: 'settings', icon: '⚙️', title: '设置' }
         ]
     },
-
+  // 跳转到积分明细页面
+  navigateToPoints() {
+    console.log("----->")
+    wx.navigateTo({
+      url: '/pages/points/index'
+    });
+  },
     onLoad() {
         this.fetchUserInfo();
     },
-
+   // 下拉刷新
+   async onPullDownRefresh() {
+      await this.fetchUserInfo();
+      wx.stopPullDownRefresh();
+    },
     async fetchUserInfo() {
         try {
             const response = await getUserInfo();
@@ -40,4 +50,7 @@ Page({
             url: '/pages/profile/edit/index'
         });
     }
+
+
+    
 }); 
