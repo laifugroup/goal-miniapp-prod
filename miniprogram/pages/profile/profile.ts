@@ -4,6 +4,8 @@ import { UserInfo } from '../../utils/types';
 Page({
     data: {
         userInfo: {} as UserInfo,
+        isVip:true,
+        vipExpireDate:'2025-01-08',
         menuItems: [
             { id: 'goals', icon: '🎯', title: '我的目标', badge: 3 },
             { id: 'records', icon: '📝', title: '训练记录' },
@@ -12,13 +14,23 @@ Page({
             { id: 'settings', icon: '⚙️', title: '设置' }
         ]
     },
+
+
+
+
+    navigateToVip() {
+        wx.navigateTo({
+            url: '/pages/vip/benefits'
+        });
+    },
+
   // 跳转到积分明细页面
   navigateToPoints() {
-    console.log("----->")
     wx.navigateTo({
       url: '/pages/points/index'
     });
   },
+  
     onLoad() {
         this.fetchUserInfo();
     },

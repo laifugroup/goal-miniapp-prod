@@ -1,0 +1,43 @@
+<view class="benefits-container">
+  <!-- 头部 -->
+  <view class="header">
+    <text class="title">VIP会员权益</text>
+    <text wx:if="{{isVip}}" class="expire-date">有效期至：{{vipExpireDate}}</text>
+  </view>
+
+  <!-- 对比表格 -->
+  <view class="comparison-table">
+    <!-- 表头 -->
+    <view class="table-header">
+      <view class="header-item normal-column text-center">普通会员</view>
+      <view class="header-item vip-column text-center">VIP会员</view>
+    </view>
+
+    <!-- 权益对比行 -->
+    <view class="table-row">
+      <view class="row-item text-left">同时只能制定一个目标</view>
+      <view class="row-item vip-column text-left">同时可以制定多个目标</view>
+    </view>
+
+    <view class="table-row">
+      <view class="row-item text-left">同时只能接一个鼓励单</view>
+      <view class="row-item vip-column text-left">同时接多个鼓励单</view>
+    </view>
+
+    <view class="table-row">
+      <view class="row-item text-left">-</view>
+      <view class="row-item vip-column text-left">完成目标，额外奖励1%积分</view>
+    </view>
+
+    <view class="table-row">
+      <view class="row-item text-left">普通到账</view>
+      <view class="row-item vip-column text-left">极速到账</view>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions">
+    <button wx:if="{{!isVip}}" class="upgrade-btn" bindtap="handleUpgrade">立即升级</button>
+    <button wx:else class="renew-btn" bindtap="handleRenew">续费会员</button>
+  </view>
+</view>

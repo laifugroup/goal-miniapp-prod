@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "日历打卡",
+  "usingComponents": {
+      "calendar": "plugin://calendar/calendar"
+  }
+}

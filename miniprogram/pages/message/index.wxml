@@ -1,0 +1,37 @@
+ <view class="messages-container">
+    <!-- 下拉刷新 -->
+    <scroll-view 
+        scroll-y
+        refresher-enabled
+        refresher-triggered="{{refreshing}}"
+        bindrefresherrefresh="onRefresh"
+        bindscrolltolower="onReachBottom"
+    >
+        <!-- 消息列表 -->
+        <view class="messages-list">
+            <block wx:for="{{messagesList}}" wx:key="id">
+                <view class="message-item">
+                    <view class="left">
+                            <view class="title line-ellipsis">{{item.title}}</view>
+                            <view class="content line-ellipsis-2">{{item.content}}</view>
+                            <view class="meta">
+                            <text class="date">{{item.date}}</text>
+                            
+                            </view>
+                    </view>
+                    <view class="right">
+                         <text wx:if="{{!item.read}}" class="unread-badge">未读</text>
+                    </view>
+                </view>
+            </block>
+            
+            <!-- 加载更多 -->
+            <view wx:if="{{hasMore}}" class="loading-more">
+                <text>加载中...</text>
+            </view>
+            <view wx:else class="no-more">
+                <text>没有更多数据了</text>
+            </view>
+        </view>
+    </scroll-view>
+</view>

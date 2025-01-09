@@ -1,0 +1,165 @@
+ // 基础样式
+.calendar_container {
+  padding: 20rpx;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.active-colort {
+  color: #fff;
+  background: #b8d5eb;
+}
+
+.active-coloro {
+  color: #fff;
+  background: #188be4;
+}
+
+
+/* 出勤  */
+.dotcolor-o{
+  background-color: #188be4 !important;  
+}
+/* 未出勤  */
+.dotcolor-t{
+  background-color: #FF7F50 !important;  
+}
+
+// 头部样式
+.header {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+
+  .title {
+    font-size: 36rpx;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 24rpx;
+  }
+
+  .streak-info {
+    display: flex;
+    gap: 40rpx;
+
+    .info-item {
+      .label {
+        font-size: 26rpx;
+        color: #666;
+        margin-bottom: 8rpx;
+      }
+
+      .value {
+        font-size: 32rpx;
+        font-weight: 500;
+        color: #333;
+
+        &.reward {
+          color: #07C160;
+        }
+      }
+    }
+  }
+}
+
+// 日历组件容器
+.calendar-container {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+// 操作按钮区域
+.actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 60rpx;
+  background-color: #fff;
+  box-shadow: 0 -4rpx 12rpx rgba(0, 0, 0, 0.05);
+
+  .checkin-btn {
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    background-color: #07C160;
+    color: #fff;
+    border-radius: 44rpx;
+    font-size: 32rpx;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; // 移除默认 padding
+    line-height: normal; // 重置 line-height
+
+    &.disabled {
+      background-color: #ccc;
+      opacity: 0.7;
+    }
+  }
+}
+
+// 日历插件自定义样式
+#calendar {
+  .calendar-header {
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 24rpx;
+    text-align: center;
+  }
+
+  .calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 16rpx;
+
+    .weekday {
+      text-align: center;
+      font-size: 28rpx;
+      color: #666;
+    }
+  }
+
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8rpx;
+
+    .day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 28rpx;
+      color: #333;
+      position: relative;
+
+      &.today {
+        border: 2rpx solid #07C160;
+      }
+
+      &.checked {
+        background-color: #07C160;
+        color: #fff;
+      }
+
+      .check-icon {
+        position: absolute;
+        bottom: 8rpx;
+        font-size: 24rpx;
+        color: #fff;
+      }
+    }
+  }
+}

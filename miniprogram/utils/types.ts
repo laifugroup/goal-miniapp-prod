@@ -18,7 +18,7 @@ export interface RspPage<T> {
 
 export interface Page<T> {
     current: number;
-    total: string;
+    total: number;
     records: T;
 }
 // "current": 90,
@@ -62,32 +62,20 @@ export enum MessageType {
     SYSTEM = 'system'
 }
 
-// 消息项接口
-export interface Message {
-    id: string;
-    type: MessageType;
-    title: string;
-    content: string;
-    isRead: boolean;
-    createTime: string;
-}
 
 // 消息列表请求参数
 export interface MessageParams {
-    type: MessageType;
     page: number;
     pageSize: number;
 }
 
 // 消息列表响应
-export interface MessageResponse {
-    list: Message[];
-    total: number;
-    unreadCount: {
-        checkin: number;
-        reminder: number;
-        system: number;
-    };
+export interface MessageRsp {
+    id: string;
+    title: string;
+    content: string;
+    isRead: boolean;
+    createTime: string;
 }
 
 

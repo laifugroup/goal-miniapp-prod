@@ -1,0 +1,54 @@
+ <view class="calendar_container">
+  <!-- 头部信息 -->
+  <view class="header">
+    <text class="title">每日打卡</text>
+    <view class="streak-info">
+      <view class="info-item">
+        <text class="label">连续打卡</text>
+        <text class="value">{{streakDays}}天</text>
+      </view>
+      <view class="info-item">
+        <text class="label">累计奖励</text>
+        <text class="value reward">{{rewardAmount}}元</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 日历组件 --> 
+  <calendar
+    id="calendar"
+    active_type="circle"
+    bindselectDate='selectDate' 
+    bindnextMonth='nextMonth' 
+    bindprevMonth='prevMonth'
+    cur-year="{{curYear}}"
+    cur-month="{{curMonth}}" 
+    day="{{day}}" 
+    header_show='{{true}}' 
+    prev='{{prev}}' 
+    next='{{next}}' 
+    speciallist='{{speciallist}}' 
+    active_type='circle'
+    pitch_on ='square'
+    txt_style='{{txt_style}}'
+    mystatus='{{mystatus}}'
+    circle_show="{{true}}"
+    pitch_on='circle'
+    closelaststyle='{{true}}'
+    colored="#000"
+    weekheight='{{150}}'
+    isTodaybtn='{{false}}'
+    allshow='{{true}}'
+  />
+
+  <!-- 打卡按钮 -->
+  <view class="actions">
+    <button 
+      class="checkin-btn {{isCheckedToday ? 'disabled' : ''}}" 
+      bindtap="handleCheckin"
+      disabled="{{isCheckedToday}}"
+    >
+      {{isCheckedToday ? '今日已打卡' : '立即打卡'}}
+    </button>
+  </view>
+</view>
