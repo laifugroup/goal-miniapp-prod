@@ -24,6 +24,13 @@ Page({
         });
     },
 
+    navigateToCalendar() {
+      wx.navigateTo({
+          url: '/pages/calendar/index'
+      });
+  },
+    
+
   // 跳转到积分明细页面
   navigateToPoints() {
     wx.navigateTo({

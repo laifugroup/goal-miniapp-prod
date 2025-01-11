@@ -1,5 +1,5 @@
 {
-  "entryPagePath": "pages/calendar/index",
+  "entryPagePath": "pages/launch/launch",
   "pages": [
     "pages/settings/index",
     "pages/calendar/index",
