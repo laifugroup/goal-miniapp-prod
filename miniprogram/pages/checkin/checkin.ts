@@ -60,7 +60,7 @@ Page({
     // 新建打卡
     createCheckin() {
       wx.navigateTo({
-        url: '/pages/checkin/create'
+        url: '/pages/target/create'
       });
     },
   

@@ -1,0 +1,81 @@
+ <view class="target_container">
+  <!-- 类型选择 -->
+  <view class="form-item">
+    <text class="label">目标类型</text>
+    <picker 
+      mode="selector" 
+      range="{{targetTypes}}" 
+      range-key="name"
+      bindchange="handleTypeChange"
+    >
+      <view class="pickerGoal">
+        {{selectedType.name || '请选择目标类型'}}
+      </view>
+    </picker>
+  </view>
+
+
+<!-- 截止时间 -->
+<view class="form-item">
+  <text class="label">截止时间</text>
+  <picker 
+    mode="date" 
+    start="{{minDate}}"
+    end="{{maxDate}}"
+    bindchange="handleDateChange"
+  >
+    <view class="pickerDate">
+      {{selectedDate || '请选择截止日期'}}
+    </view>
+  </picker>
+</view>
+
+
+  <!-- 目标描述 -->
+  <view class="form-item">
+    <text class="label">目标描述</text>
+    <textarea 
+      class="input"
+      placeholder="请输入你的目标描述"
+      maxlength="200"
+      auto-height
+      bindinput="handleDescriptionChange"
+    />
+  </view>
+
+  <!-- 保证金 -->
+  <view class="form-item">
+    <text class="label">保证金</text>
+    <view class="input-container">
+      <text class="currency">¥</text>
+      <input 
+        type="digit"
+        class="input"
+        placeholder="请输入保证金金额"
+        bindinput="handleDepositChange"
+      />
+    </view>
+
+  </view>
+
+
+
+    <!-- 保证金说明 -->
+    <view class="deposit-tip">
+          <text class="tip-text">
+              ℹ️ 达成目标即退全额保证金🌟
+          </text>
+          <text class="tip-text">
+              ℹ️ 达成目标可获得更多奖励🌟
+          </text>
+          <text class="tip-text">
+              ℹ️ 达成目标的诀窍就是坚持🌟
+          </text>
+        </view>
+
+
+  <!-- 提交按钮 -->
+  <view class="actions">
+    <button class="submit-btn" bindtap="handleSubmit">创建目标</button>
+  </view>
+</view>

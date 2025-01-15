@@ -12,7 +12,8 @@
     "pages/about/index",
     "pages/privacy/index",
     "pages/points/index",
-    "pages/vip/benefits"
+    "pages/vip/benefits",
+    "pages/target/create"
   ],
   "window": {
     "navigationBarTextStyle": "black",
