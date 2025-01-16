@@ -74,6 +74,29 @@
         </view>
 
 
+<!-- 协议弹窗 -->
+<view class="agreement-modal" wx:if="{{showAgreementModal}}">
+  <view class="modal-mask"></view>
+  <view class="modal-content">
+    <view class="modal-header">
+      <text>用户协议</text>
+      <text class="close" bindtap="closeAgreementModal">×</text>
+    </view>
+    <scroll-view class="agreement-content" scroll-y>
+      <!-- 这里放置协议内容 -->
+      <text>
+        1. 第一条协议内容...\n
+        2. 第二条协议内容...\n
+        3. 第三条协议内容...\n
+        <!-- 添加更多协议内容 -->
+      </text>
+    </scroll-view>
+    <view class="modal-footer">
+      <button class="agree-btn" bindtap="handleAgree">同意协议</button>
+    </view>
+  </view>
+</view>
+
   <!-- 提交按钮 -->
   <view class="actions">
     <button class="submit-btn" bindtap="handleSubmit">创建目标</button>

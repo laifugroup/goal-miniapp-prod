@@ -13,7 +13,9 @@ Page({
       maxDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1))
         .toISOString()
         .split('T')[0], // 一年后
-      selectedDate: ''
+      selectedDate: '',
+      isAgreed: false,
+      showAgreementModal: false
     },
   
     // 处理类型选择
@@ -45,6 +47,37 @@ Page({
         deposit: e.detail.value
       })
     },
+
+
+
+    
+  // 处理协议选择
+  handleAgreementChange(e) {
+    this.setData({
+      isAgreed: e.detail.value.includes('agree')
+    })
+  },
+
+  // 打开协议弹窗
+  openAgreementModal() {
+    this.setData({ showAgreementModal: true })
+  },
+
+  // 关闭协议弹窗
+  closeAgreementModal() {
+    this.setData({ showAgreementModal: false })
+  },
+
+  // 同意协议
+  handleAgree() {
+    this.setData({
+      isAgreed: true,
+      showAgreementModal: false
+    })
+    wx.showToast({ title: '已同意协议' })
+  },
+
+
   
     // 提交表单
     handleSubmit() {
@@ -55,7 +88,7 @@ Page({
         return
       }
 
-      if (!selectedDate) {
+      if (!this.data.selectedDate) {
         wx.showToast({ title: '请选择截止日期', icon: 'none' })
         return
       }
@@ -67,6 +100,12 @@ Page({
   
       if (!deposit || Number(deposit) <= 0) {
         wx.showToast({ title: '请输入有效的保证金金额', icon: 'none' })
+        return
+      }
+
+
+      if (!this.data.isAgreed) {
+        this.setData({ showAgreementModal: true })
         return
       }
   
