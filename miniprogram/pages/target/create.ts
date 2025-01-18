@@ -14,8 +14,8 @@ Page({
         .toISOString()
         .split('T')[0], // 一年后
       selectedDate: '',
-      isAgreed: false,
-      showAgreementModal: false
+      showAgreementPopup: false,  // 控制协议弹窗显示
+      hasAgreed: false,          // 是否同意协议
     },
   
     // 处理类型选择
@@ -49,33 +49,35 @@ Page({
     },
 
 
+    handleAgreementChange(e: WechatMiniprogram.CheckboxGroupChange) {
+      this.setData({
+        hasAgreed: e.detail.value.includes('agreed')
+      });
+    },
 
     
-  // 处理协议选择
-  handleAgreementChange(e) {
+  // 显示协议弹窗
+  showAgreement() {
     this.setData({
-      isAgreed: e.detail.value.includes('agree')
-    })
+      showAgreementPopup: true
+    });
   },
 
-  // 打开协议弹窗
-  openAgreementModal() {
-    this.setData({ showAgreementModal: true })
-  },
-
-  // 关闭协议弹窗
-  closeAgreementModal() {
-    this.setData({ showAgreementModal: false })
-  },
-
-  // 同意协议
-  handleAgree() {
+  // 隐藏协议弹窗
+  hideAgreement() {
     this.setData({
-      isAgreed: true,
-      showAgreementModal: false
-    })
-    wx.showToast({ title: '已同意协议' })
+      showAgreementPopup: false
+    });
   },
+
+ 
+
+  // 防止弹窗穿透
+  preventTouchMove() {
+    return;
+  },
+
+  
 
 
   
@@ -83,6 +85,14 @@ Page({
     handleSubmit() {
       const { selectedType, description, deposit } = this.data
   
+      if (!this.data.hasAgreed) {
+        wx.showToast({
+          title: '请先同意用户服务协议',
+          icon: 'none'
+        });
+        return;
+      }
+
       if (!selectedType) {
         wx.showToast({ title: '请选择目标类型', icon: 'none' })
         return
@@ -104,7 +114,7 @@ Page({
       }
 
 
-      if (!this.data.isAgreed) {
+      if (!this.data.hasAgreed) {
         this.setData({ showAgreementModal: true })
         return
       }
