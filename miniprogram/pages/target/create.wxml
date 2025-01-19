@@ -43,15 +43,15 @@
     />
   </view>
 
-  <!-- 保证金 -->
+  <!-- 激励金 -->
   <view class="form-item">
-    <text class="label">保证金</text>
+    <text class="label">激励金</text>
     <view class="input-container">
       <text class="currency">¥</text>
       <input 
         type="digit"
         class="input"
-        placeholder="请输入保证金金额"
+        placeholder="请输入激励金额"
         bindinput="handleDepositChange"
       />
     </view>
@@ -63,7 +63,7 @@
     <!-- 保证金说明 -->
     <view class="deposit-tip">
           <text class="tip-text">
-              ℹ️ 达成目标即退全额保证金🌟
+              ℹ️ 达成目标即全额返激励金🌟
           </text>
           <text class="tip-text">
               ℹ️ 达成目标可获得更多奖励🌟

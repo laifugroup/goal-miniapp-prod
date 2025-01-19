@@ -1,7 +1,7 @@
 .detail-container {
     min-height: 100vh;
     background: #f5f6fa;
-    padding-bottom: 40rpx;
+    padding-bottom: calc(128rpx + env(safe-area-inset-bottom));
   }
   
   .target-card {
@@ -23,6 +23,21 @@
         font-size: 28rpx;
         color: #666;
         margin-bottom: 30rpx;
+      }
+  
+      .progress-bar {
+        height: 8rpx;
+        background: #f0f0f0;
+        border-radius: 4rpx;
+        margin: 20rpx 0 30rpx;
+        overflow: hidden;
+  
+        .progress-inner {
+          height: 100%;
+          background: linear-gradient(90deg, #1890ff, #52c41a);
+          border-radius: 4rpx;
+          transition: width 0.3s ease;
+        }
       }
   
       .target-stats {
@@ -106,12 +121,23 @@
       padding: 0 30rpx;
       margin-bottom: 20rpx;
   
-      .section-title {
-        font-size: 30rpx;
-        font-weight: 500;
-        color: #333;
-      }
+      .title-group {
+        display: flex;
+        align-items: flex-end;
   
+        .section-title {
+          font-size: 30rpx;
+          font-weight: 500;
+          color: #333;
+        }
+  
+        .section-desc {
+          font-size: 24rpx;
+          color: #999;
+          margin-left: 8rpx;
+        }
+      }
+      
       .join-mentor-btn {
         font-size: 28rpx;
         color: #1890ff;
@@ -129,6 +155,15 @@
     .mentors-list {
       white-space: nowrap;
       padding: 0 20rpx;
+  
+      // 隐藏滚动条
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      
+      // 兼容性处理
+      scrollbar-width: none;  /* Firefox */
+      -ms-overflow-style: none;  /* IE and Edge */
   
       .mentor-item {
         display: inline-block;
@@ -151,126 +186,84 @@
     }
   }
   
+  .action-buttons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20rpx 30rpx;
+    padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+    background: #fff;
+    box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+
+    .btn {
+      width: 300rpx;
+      height: 88rpx;
+      line-height: 88rpx;
+      text-align: center;
+      border-radius: 44rpx;
+      font-size: 30rpx;
+      margin: 0 10rpx;
+      border: none;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.check-btn {
+        background: #1890ff;
+        color: #fff;
+      }
+
+      &.motivate-btn {
+        background: #52c41a;
+        color: #fff;
+      }
+
+      &:active {
+        opacity: 0.9;
+      }
+    }
+  }
+
   .checkin-section {
     padding: 30rpx;
     text-align: center;
-  
+
     button {
       width: 80%;
       height: 88rpx;
-      line-height: 88rpx;
       border-radius: 44rpx;
       font-size: 32rpx;
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
       
       &.join-btn {
         background: #1890ff;
         color: #fff;
+
+        &:active {
+          opacity: 0.9;
+        }
       }
-  
+
       &.checkin-btn {
         background: #52c41a;
         color: #fff;
-  
+
         &.checked {
           background: #d9d9d9;
         }
-      }
-    }
-  }
-  
-  .tabs {
-    display: flex;
-    background: #fff;
-    padding: 0 30rpx;
-    border-bottom: 1rpx solid #eee;
-  
-    .tab-item {
-      flex: 1;
-      text-align: center;
-      padding: 20rpx 0;
-      font-size: 28rpx;
-      color: #666;
-      position: relative;
-  
-      &.active {
-        color: #1890ff;
-        font-weight: 500;
-  
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 40rpx;
-          height: 4rpx;
-          background: #1890ff;
-          border-radius: 2rpx;
-        }
-      }
-    }
-  }
-  
-  .records-list, .motivations-list {
-    padding: 20rpx 30rpx;
-  
-    .record-item, .motivation-item {
-      background: #fff;
-      padding: 20rpx;
-      border-radius: 8rpx;
-      margin-bottom: 20rpx;
-      display: flex;
-  
-      .user-avatar, .mentor-avatar {
-        width: 80rpx;
-        height: 80rpx;
-        border-radius: 50%;
-        margin-right: 20rpx;
-      }
-  
-      .record-content, .motivation-content {
-        flex: 1;
-  
-        .record-header, .motivation-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 10rpx;
-  
-          .username, .mentor-name {
-            font-size: 28rpx;
-            color: #333;
-            font-weight: 500;
-          }
-  
-          .time {
-            font-size: 24rpx;
-            color: #999;
-          }
-        }
-  
-        .record-text, .motivation-text {
-          font-size: 28rpx;
-          color: #666;
-          line-height: 1.6;
-        }
-  
-        .record-images {
-          margin-top: 16rpx;
-          display: flex;
-          flex-wrap: wrap;
-  
-          image {
-            width: 180rpx;
-            height: 180rpx;
-            margin-right: 10rpx;
-            margin-bottom: 10rpx;
-            border-radius: 8rpx;
-  
-            &:nth-child(3n) {
-              margin-right: 0;
-            }
-          }
+
+        &:active {
+          opacity: 0.9;
         }
       }
     }

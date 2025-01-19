@@ -34,14 +34,16 @@
     </view>
   </view>
 
-  <!-- 激励师横向列表 -->
 <!-- 激励师横向列表 -->
 <view class="mentors-section">
   <view class="section-header">
-    <text class="section-title">激励师</text>
+    <view class="title-group">
+      <text class="section-title">激励师</text>
+      <text class="section-desc">(立即加入，瓜分奖励)</text>
+    </view>
     <view class="join-mentor-btn" bindtap="handleJoinMentor">加入</view>
   </view>
-  <scroll-view scroll-x class="mentors-list">
+  <scroll-view scroll-x :show-scrollbar="false" enhanced  class="mentors-list">
     <view class="mentor-item" wx:for="{{mentors}}" wx:key="id">
       <image class="mentor-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
       <text class="mentor-name">{{item.name}}</text>
@@ -61,44 +63,9 @@
     </block>
   </view>
 
-  <!-- 打卡记录/激励切换标签 -->
-  <view class="tabs">
-    <view class="tab-item {{currentTab === 'records' ? 'active' : ''}}" 
-          bindtap="switchTab" data-tab="records">打卡记录</view>
-    <view class="tab-item {{currentTab === 'motivations' ? 'active' : ''}}" 
-          bindtap="switchTab" data-tab="motivations">激励记录</view>
-  </view>
-
-  <!-- 打卡记录列表 -->
-  <view class="records-list" wx:if="{{currentTab === 'records'}}">
-    <view class="record-item" wx:for="{{records}}" wx:key="id">
-      <image class="user-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
-      <view class="record-content">
-        <view class="record-header">
-          <text class="username">{{item.username}}</text>
-          <text class="time">{{item.time}}</text>
-        </view>
-        <view class="record-text">{{item.content}}</view>
-        <view class="record-images" wx:if="{{item.images.length > 0}}">
-          <image wx:for="{{item.images}}" wx:key="*this" wx:for-item="img"
-                 src="{{img}}" mode="aspectFill" bindtap="previewImage" 
-                 data-urls="{{item.images}}" data-current="{{img}}"></image>
-        </view>
-      </view>
-    </view>
-  </view>
-
-  <!-- 激励记录列表 -->
-  <view class="motivations-list" wx:if="{{currentTab === 'motivations'}}">
-    <view class="motivation-item" wx:for="{{motivations}}" wx:key="id">
-      <image class="mentor-avatar" src="{{item.mentorAvatar}}" mode="aspectFill"></image>
-      <view class="motivation-content">
-        <view class="motivation-header">
-          <text class="mentor-name">{{item.mentorName}}</text>
-          <text class="time">{{item.time}}</text>
-        </view>
-        <view class="motivation-text">{{item.content}}</view>
-      </view>
-    </view>
+   <!-- 底部操作按钮 -->
+  <view class="action-buttons">
+    <button class="btn check-btn" bindtap="handleCheck">打卡记录</button>
+    <button class="btn motivate-btn" bindtap="handleMotivate">激励记录</button>
   </view>
 </view>
