@@ -63,6 +63,13 @@ Page({
         url: '/pages/target/create'
       });
     },
+
+    checkinDetail() {
+      wx.navigateTo({
+        url: '/pages/goal/index'
+      });
+    },
+    
   
     // 模拟请求
     mockRequest(): Promise<any[]> {

@@ -32,7 +32,7 @@
     bindscrolltolower="onLoadMore"
   >
     <block wx:for="{{checkinList}}" wx:key="id">
-        <view class="list-item">
+        <view class="list-item" bindtap="checkinDetail">
             <!-- 左侧内容 -->
             <view class="item-content">
             <text class="item-title">{{item.title}}</text>

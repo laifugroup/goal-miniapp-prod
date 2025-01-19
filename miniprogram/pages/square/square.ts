@@ -33,16 +33,16 @@ Page({
 
     setQuickActions() {
         const quickActions: QuickAction[] = [
-            { id: 'target', title: '目标训练', icon: '🎯', path: '/pages/target/index' },
-            { id: 'weight', title: '减重计划', icon: '⚖️', path: '/pages/weight/index' },
-            { id: 'muscle', title: '增肌计划', icon: '💪', path: '/pages/muscle/index' },
+            { id: 'target', title: '目标激励', icon: '🎯', path: '/pages/target/index' },
+            { id: 'weight', title: '庆典活动', icon: '⚖️', path: '/pages/weight/index' },
+            //{ id: 'muscle', title: '增肌计划', icon: '💪', path: '/pages/muscle/index' },
             { id: 'start', title: '开始训练', icon: '🏃', path: '/pages/training/index' },
-            { id: 'nutrition', title: '营养指导', icon: '🥗', path: '/pages/nutrition/index' },
-            { id: 'cardio', title: '有氧训练', icon: '🏋️', path: '/pages/cardio/index' },
-            { id: 'yoga', title: '瑜伽课程', icon: '🧘', path: '/pages/yoga/index' },
-            { id: 'sleep', title: '睡眠管理', icon: '😴', path: '/pages/sleep/index' },
+            { id: 'nutrition', title: '营养指导', icon: '🥗', path: '/pages/nutrition/index' } ,
+           // { id: 'cardio', title: '有氧训练', icon: '🏋️', path: '/pages/cardio/index' },
+           // { id: 'yoga', title: '瑜伽课程', icon: '🧘', path: '/pages/yoga///index' },
+           // { id: 'sleep', title: '睡眠管理', icon: '😴', path: '/pages/sleep/index' },
             { id: 'progress', title: '进度追踪', icon: '📈', path: '/pages/progress/index' },
-            { id: 'settings', title: '设置', icon: '⚙️', path: '/pages/settings/index' }
+          //  { id: 'settings', title: '设置', icon: '⚙️', path: '/pages/settings/index' }
         ];
         this.setData({
             quickActions // 设置快捷按钮数据

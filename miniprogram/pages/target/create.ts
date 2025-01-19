@@ -42,7 +42,7 @@ Page({
     },
   
     // 处理保证金输入
-    handleDepositChange(e: WechatMiniprogram.InputInput) {
+    handleDepositChange(e: WechatMiniprogram.Input) {
       this.setData({
         deposit: e.detail.value
       })

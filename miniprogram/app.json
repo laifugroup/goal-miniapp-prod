@@ -13,6 +13,7 @@
     "pages/privacy/index",
     "pages/points/index",
     "pages/vip/benefits",
+    "pages/goal/index",
     "pages/target/create"
   ],
   "window": {
