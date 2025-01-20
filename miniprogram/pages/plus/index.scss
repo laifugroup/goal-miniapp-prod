@@ -1,0 +1,73 @@
+.plus-container {
+  min-height: 100vh;
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.logo-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60rpx 0;
+
+  .motivation-logo {
+    width: 400rpx;
+    height: 400rpx;
+  }
+}
+
+.slogan-section {
+  text-align: center;
+  margin-bottom: 80rpx;
+
+  .main-slogan {
+    font-size: 40rpx;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 16rpx;
+  }
+
+  .sub-slogan {
+    font-size: 32rpx;
+    color: #666;
+    display: block;
+    margin-bottom: 60rpx;
+  }
+
+  .description {
+    margin-top: 40rpx;
+
+    .desc-text {
+      display: block;
+      font-size: 28rpx;
+      color: #999;
+      line-height: 2;
+    }
+  }
+}
+
+.action-section {
+  padding: 40rpx 0;
+  display: flex;
+  justify-content: flex-end;
+
+  .create-btn {
+    background: none;
+    border: none;
+    font-size: 32rpx;
+    color: #1890ff;
+    padding: 20rpx 40rpx;
+    
+    &::after {
+      border: none;
+    }
+
+    &:active {
+      opacity: 0.8;
+    }
+  }
+} 

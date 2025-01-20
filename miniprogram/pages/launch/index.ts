@@ -9,7 +9,7 @@ Page({
         // 延迟 1.5 秒以展示启动页
         setTimeout(() => {
             wx.reLaunch({
-                url: accessToken ? '/pages/square/square' : '/pages/login/login'
+                url: accessToken ? '/pages/square/index' : '/pages/login/index'
             });
         }, 2000);
     }

@@ -1,20 +1,21 @@
 {
-  "entryPagePath": "pages/launch/launch",
+  "entryPagePath": "pages/launch/index",
   "pages": [
     "pages/settings/index",
     "pages/calendar/index",
-    "pages/launch/launch",
-    "pages/login/login",
-    "pages/square/square",
-    "pages/checkin/checkin",
+    "pages/launch/index",
+    "pages/login/index",
+    "pages/square/index",
+    "pages/checkin/index",
     "pages/message/index",
-    "pages/profile/profile",
+    "pages/profile/index",
     "pages/about/index",
     "pages/privacy/index",
     "pages/points/index",
-    "pages/vip/benefits",
+    "pages/vip/index",
     "pages/goal/index",
-    "pages/target/create"
+    "pages/target/index",
+    "pages/plus/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -43,16 +44,22 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/square/square",
+        "pagePath": "pages/square/index",
         "text": "广场",
         "iconPath": "assets/images/tab/square.png",
         "selectedIconPath": "assets/images/tab/square-active.png"
       },
       {
-        "pagePath": "pages/checkin/checkin",
-        "text": "打卡",
+        "pagePath": "pages/checkin/index",
+        "text": "激励",
         "iconPath": "assets/images/tab/checkin.png",
         "selectedIconPath": "assets/images/tab/checkin-active.png"
+      },
+      {
+        "pagePath": "pages/plus/index",
+        "text": "创建目标",
+        "iconPath": "assets/images/tab/plus.png",
+        "selectedIconPath": "assets/images/tab/plus-active.png"
       },
       {
         "pagePath": "pages/message/index",
@@ -61,7 +68,7 @@
         "selectedIconPath": "assets/images/tab/message-active.png"
       },
       {
-        "pagePath": "pages/profile/profile",
+        "pagePath": "pages/profile/index",
         "text": "我的",
         "iconPath": "assets/images/tab/profile.png",
         "selectedIconPath": "assets/images/tab/profile-active.png"

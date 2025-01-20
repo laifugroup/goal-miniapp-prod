@@ -1,0 +1,28 @@
+<view class="plus-container">
+  <!-- Logo区域 -->
+  <view class="logo-section">
+    <svg class="motivation-logo" width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="90" fill="#E6F7FF"/>
+      <path d="M100 40C75.2 40 55 60.2 55 85C55 103.4 66.1 119.1 82 125.3V160L100 150L118 160V125.3C133.9 119.1 145 103.4 145 85C145 60.2 124.8 40 100 40Z" 
+        fill="#1890FF" stroke="#1890FF" stroke-width="4"/>
+      <path d="M90 95L85 90L80 95L100 115L120 95L115 90L100 105L90 95Z" fill="black"/>
+    </svg>
+  </view>
+
+  <!-- 标语区域 -->
+  <view class="slogan-section">
+    <text class="main-slogan">每一个坚持的日子</text>
+    <text class="sub-slogan">都在让梦想更进一步</text>
+    
+    <view class="description">
+      <text class="desc-text">21天养成一个习惯</text>
+      <text class="desc-text">90天收获一个改变</text>
+      <text class="desc-text">365天成就一个更好的自己</text>
+    </view>
+  </view>
+
+  <!-- 按钮区域 -->
+  <view class="action-section">
+    <button class="create-btn" bindtap="createCheckin">立即创建目标</button>
+  </view>
+</view> 

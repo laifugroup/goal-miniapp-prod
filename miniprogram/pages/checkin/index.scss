@@ -70,6 +70,25 @@
       flex: 1;
       margin-right: 20rpx;
       
+      .item-creator {
+        font-size: 24rpx;
+        color: #999;
+        margin-bottom: 12rpx;
+        
+        .creator-name {
+          color: #1890ff;
+          font-weight: 500;
+        }
+        
+        .create-date {
+          margin: 0 8rpx;
+        }
+        
+        .create-text {
+          color: #999;
+        }
+      }
+  
       .item-createDate {
         font-size: 24rpx;
         color: #999;
@@ -153,22 +172,5 @@
           }
         }
       }
-    }
-  }
-  
-  .fixed-btn {
-    position: fixed;
-    bottom: 40rpx;
-    right: 40rpx;
-    transform: none;
-    background: #1890ff;
-    color: #fff;
-    padding: 16rpx 40rpx;
-    border-radius: 32rpx;
-    font-size: 28rpx;
-    box-shadow: 0 4rpx 12rpx rgba(24, 144, 255, 0.3);
-  
-    &:active {
-      opacity: 0.9;
     }
   }

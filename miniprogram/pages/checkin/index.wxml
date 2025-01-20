@@ -4,7 +4,7 @@
     <view class="tab-item {{currentTab === 0 ? 'active' : ''}}"
       bindtap="switchTab"
       data-index="0">
-      激励我的
+      我的激励
       <view wx:if="{{uncheckedCount > 0}}" class="badge">
         {{uncheckedCount > 99 ? '99+' : uncheckedCount}}
       </view>
@@ -29,7 +29,11 @@
     <block wx:for="{{checkinList}}" wx:key="id">
       <view class="list-item" bindtap="checkinDetail">
         <view class="item-content">
-          <text class="item-createDate">{{item.createDate}}创建了目标</text>
+          <view class="item-creator">
+            <text class="creator-name">{{item.creator.name}}</text>
+            <text class="create-date">{{item.createDate}}</text>
+            <text class="create-text">创建了目标</text>
+          </view>
           <text class="item-title">{{item.title}}</text>
           <view class="progress-info">
             <view class="progress-bar">
@@ -53,9 +57,4 @@
       </view>
     </block>
   </scroll-view>
-
-  <!-- 固定新建按钮 -->
-    <view class="fixed-btn" bindtap="createCheckin">
-     <text>马上激励</text>
-    </view>
 </view>

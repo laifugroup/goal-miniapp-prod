@@ -1,12 +1,17 @@
+interface Creator {
+  name: string;
+  avatar?: string;
+}
+
 interface CheckinItem {
   id: number;
   title: string;
-  today: string;
+  creator: Creator;
+  createDate: string;
   checked: boolean;
   currentDay: number;
   totalDays: number;
   progress?: number; // 进度百分比
-  createDate:string;
 }
 
 Page({
@@ -68,12 +73,6 @@ Page({
       this.loadData();
     },
   
-    // 新建打卡
-    createCheckin() {
-      wx.navigateTo({
-        url: '/pages/target/create'
-      });
-    },
 
     checkinDetail() {
       wx.navigateTo({
@@ -93,8 +92,10 @@ Page({
             return {
               id: Date.now() + i,
               title: `每日晨跑5公里 ${this.data.page * 10 + i}`,
+              creator: {
+                name: '张三',  // 这里可以是动态数据
+              },
               createDate: '2024-01-10',
-              today: '2024-01-20',
               checked: Math.random() > 0.5, // 随机打卡状态
               currentDay,
               totalDays,
