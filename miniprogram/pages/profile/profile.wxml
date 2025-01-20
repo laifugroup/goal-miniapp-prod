@@ -60,7 +60,7 @@
             </view>
             <view class="right">
                 <text class="badge" wx:if="{{item.badge}}">{{item.badge}}</text>
-                <text class="arrow">❯</text>
+                <text class="arrow">〉</text>
             </view>
         </view>
     </view>

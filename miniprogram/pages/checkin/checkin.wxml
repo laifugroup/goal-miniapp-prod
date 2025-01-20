@@ -1,51 +1,57 @@
 <view class="checkin_container">
-<view class="tabs">
-  <view 
-    class="tab-item {{currentTab === 0 ? 'active' : ''}}"
-    bindtap="switchTab"
-    data-index="0"
-  >
-    激励我的
-    <view wx:if="{{uncheckedCount > 0}}" class="badge">
-      {{uncheckedCount > 99 ? '99+' : uncheckedCount}}
+  <!-- 标签页 -->
+  <view class="tabs">
+    <view class="tab-item {{currentTab === 0 ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-index="0">
+      激励我的
+      <view wx:if="{{uncheckedCount > 0}}" class="badge">
+        {{uncheckedCount > 99 ? '99+' : uncheckedCount}}
+      </view>
+    </view>
+    <view class="tab-item {{currentTab === 1 ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-index="1">
+      我激励的
+      <view wx:if="{{reminderCount > 0}}" class="badge">
+        {{reminderCount > 99 ? '99+' : reminderCount}}
+      </view>
     </view>
   </view>
-  <view 
-    class="tab-item {{currentTab === 1 ? 'active' : ''}}"
-    bindtap="switchTab"
-    data-index="1"
-  >
-    我激励的
-    <view wx:if="{{reminderCount > 0}}" class="badge">
-      {{reminderCount > 99 ? '99+' : reminderCount}}
-    </view>
-  </view>
-</view>
 
   <!-- 列表区域 -->
-  <scroll-view 
-    class="list-container"
+  <scroll-view class="list-container"
     scroll-y
     enable-back-to-top
     refresher-enabled
     bindrefresherrefresh="onRefresh"
-    bindscrolltolower="onLoadMore"
-  >
+    bindscrolltolower="onLoadMore">
     <block wx:for="{{checkinList}}" wx:key="id">
-        <view class="list-item" bindtap="checkinDetail">
-            <!-- 左侧内容 -->
-            <view class="item-content">
-            <text class="item-title">{{item.title}}</text>
-            <text class="item-time">{{item.time}}</text>
+      <view class="list-item" bindtap="checkinDetail">
+        <view class="item-content">
+          <text class="item-createDate">{{item.createDate}}创建了目标</text>
+          <text class="item-title">{{item.title}}</text>
+          <view class="progress-info">
+            <view class="progress-bar">
+              <view class="progress-inner" style="width: {{(item.currentDay/item.totalDays * 100)}}%"></view>
             </view>
-
-            <!-- 右侧状态 -->
-            <view class="item-status {{item.checked ? 'checked' : 'unchecked'}}">
-            {{item.checked ? '已打卡' : '未打卡'}}
+            <view class="progress-text">
+              <text class="current">{{item.currentDay}}</text>
+              <text class="separator">/</text>
+              <text class="total">{{item.totalDays}}天</text>
             </view>
+          </view>
         </view>
+        <view class="item-right">
+          <view class="status-group">
+            <text class="today-text">今日</text>
+            <view class="item-status {{item.checked ? 'checked' : 'unchecked'}}">
+              {{item.checked ? '已打卡' : '未打卡'}}
+            </view>
+          </view>
+        </view>
+      </view>
     </block>
-
   </scroll-view>
 
   <!-- 固定新建按钮 -->

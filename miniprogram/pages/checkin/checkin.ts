@@ -1,7 +1,18 @@
+interface CheckinItem {
+  id: number;
+  title: string;
+  today: string;
+  checked: boolean;
+  currentDay: number;
+  totalDays: number;
+  progress?: number; // 进度百分比
+  createDate:string;
+}
+
 Page({
     data: {
       currentTab: 0, // 当前选中的 tab
-      checkinList: [], // 打卡列表
+      checkinList: [] as CheckinItem[], // 打卡列表
       page: 1,
       loading: false,
       hasMore: true,
@@ -71,16 +82,25 @@ Page({
     },
     
   
-    // 模拟请求
-    mockRequest(): Promise<any[]> {
+    // 修改模拟请求数据
+    mockRequest(): Promise<CheckinItem[]> {
       return new Promise(resolve => {
         setTimeout(() => {
-          const data = Array.from({ length: 10 }).map((_, i) => ({
-            id: Date.now() + i,
-            title: `打卡项目 ${this.data.page * 10 + i } 标签${this.data.currentTab}`,
-            time: '2023-12-01',
-            checked:true
-          }));
+          const data = Array.from({ length: 10 }).map((_, i) => {
+            const totalDays = 21; // 固定21天
+            const currentDay = Math.floor(Math.random() * (totalDays + 1)); // 随机当前天数
+            
+            return {
+              id: Date.now() + i,
+              title: `每日晨跑5公里 ${this.data.page * 10 + i}`,
+              createDate: '2024-01-10',
+              today: '2024-01-20',
+              checked: Math.random() > 0.5, // 随机打卡状态
+              currentDay,
+              totalDays,
+              progress: Math.floor((currentDay / totalDays) * 100) // 计算进度
+            };
+          });
           resolve(data);
         }, 500);
       });
