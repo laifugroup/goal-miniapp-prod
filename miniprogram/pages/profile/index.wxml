@@ -35,12 +35,12 @@
         </view>
         <view class="vip-text">
             <text class="vip-status">{{isVip ? '高级认证激励师' : '未认证激励师'}}</text>
-            <text wx:if="{{!isVip}}" class="vip-tip">立即认证，享受开发者一对一专属服务</text>
+            <text wx:if="{{!isVip}}" class="vip-tip">立即认证，享受一对一专属服务</text>
             <text wx:else class="vip-expire">有效期至：{{vipExpireDate}}</text>
         </view>
         </view>
         <view class="vip-action">
-        <text>{{isVip ? '查看权益' : '立即升级'}}</text>
+        <text>{{isVip ? '查看权益' : '立即认证'}}</text>
         </view>
     </view>
     </view>
