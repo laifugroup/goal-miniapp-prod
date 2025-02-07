@@ -44,17 +44,14 @@ Page({
     // 加载数据
     async loadData() {
       if (this.data.refreshing || !this.data.hasMore) return;
-  
       this.setData({ refreshing: true });
-  
      try{
           // 模拟请求
       const newData = await this.mockRequest();
-  
       this.setData({
         checkinList: this.data.page === 1 ? newData : [...this.data.checkinList, ...newData],
         refreshing: false,
-        hasMore: newData.length >= 10
+        hasMore: this.data.page<=2
       });
      }catch(error){
         wx.showToast({
@@ -63,24 +60,22 @@ Page({
           });
      }
      finally{
-        console.log("stopPullDownRefresh")
          wx.stopPullDownRefresh()
      }
     },
   
     // 下拉刷新
     onPullDownRefresh() {
-        console.log("onPullDownRefresh")
+        console.log("下拉刷新")
       this.setData({
         page: 1,
-        hasMore: true
       });
       this.loadData();
     },
   
     // 上拉加载更多
     onReachBottom() {
-        console.log("onReachBottom")
+        console.log("上拉加载更多")
       if (!this.data.hasMore) return;
       this.setData({ page: this.data.page + 1 });
       this.loadData();

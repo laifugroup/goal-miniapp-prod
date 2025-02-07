@@ -5,7 +5,7 @@ Page({
 
   createCheckin() {
     wx.navigateTo({
-      url: '/pages/target/index'
+      url: '/pages/create/index'
     });
   }
 }); 

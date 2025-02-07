@@ -8,6 +8,7 @@ Page({
         checkinList: [] as CheckinItem[], // 打卡列表
         page: 1,
         refreshing: false,
+        hasMore: true,
     },
 
     onLoad() {
@@ -30,17 +31,17 @@ Page({
     },
     // 上拉加载更多
     onReachBottom() {
-        console.log("onReachBottom")
+        if (!this.data.hasMore) return;
+        console.log("上拉加载更多")
       this.setData({ page: this.data.page + 1 });
       this.loadData();
     },
 
        // 下拉刷新
     onPullDownRefresh() {
-        console.log("onPullDownRefresh")
+        console.log("下拉刷新")
       this.setData({
-        page: 1,
-        hasMore: true
+        page: 1
       });
       this.loadData();
     },
@@ -56,7 +57,7 @@ Page({
         this.setData({
           checkinList: this.data.page === 1 ? newData : [...this.data.checkinList, ...newData],
           refreshing: false,
-          hasMore: newData.length >= 10
+          hasMore: this.data.page<=2
         });
        }catch(error){
           wx.showToast({

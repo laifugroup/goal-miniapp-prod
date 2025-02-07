@@ -22,10 +22,10 @@
   <!-- 列表区域 -->
   <scroll-view class="list-container"
     scroll-y 
-    bindrefresherrefresh="onPullDownRefresh"
-    refresher-enabled="{{true}}"
+    refresher-enabled="{{false}}"
     refresher-triggered="{{refreshing}}"
-    bindscrolltolower="onReachBottom">
+    bindscrolltolower="onReachBottom"
+  >
     <block wx:for="{{checkinList}}" wx:key="id">
       <view class="list-item" bindtap="checkinDetail">
         <view class="item-content">
@@ -56,5 +56,15 @@
         </view>
       </view>
     </block>
+
+    <!-- 加载更多 -->
+      <view wx:if="{{hasMore}}" class="loading-more">
+          <text>加载中...</text>
+      </view>
+      <view wx:else class="no-more">
+          <text>没有更多数据了</text>
+      </view>
+
+
   </scroll-view>
 </view>

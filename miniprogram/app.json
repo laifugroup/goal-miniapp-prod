@@ -14,14 +14,13 @@
     "pages/points/index",
     "pages/vip/index",
     "pages/goal/index",
-    "pages/target/index",
+    "pages/create/index",
     "pages/plus/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationStyle": "default",
     "navigationBarTitleText": "激励打卡",
-    "enablePullDownRefresh": false,
     "navigationBarBackgroundColor": "#fff"
   },
   "style": "v2",

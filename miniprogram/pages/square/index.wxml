@@ -57,11 +57,21 @@
           <view class="status-group">
             <text class="today-text">瓜分￥978元</text>
             <view class="item-status {{item.checked ? 'checked' : 'unchecked'}}">
-              {{item.checked ? '已招募' : '招募中'}}
+              {{item.checked ? '已完成' : '招募中'}}
             </view>
           </view>
         </view>
       </view>
     </block>
+
+        <!-- 加载更多 -->
+        <view wx:if="{{hasMore}}" class="loading-more">
+          <text>加载中...</text>
+      </view>
+      <view wx:else class="no-more">
+          <text>没有更多数据了</text>
+      </view>
+
+
   </scroll-view>
 </view>
