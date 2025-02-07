@@ -31,11 +31,13 @@ import { MessageRsp } from '../../utils/types';
           title: '加载失败',
           icon: 'error'
         });
+     }finally{
+         wx.stopPullDownRefresh()
      }
     },
   
     // 下拉刷新
-    onRefresh() {
+    onPullDownRefresh() {
       console.log("下拉刷新")
       this.setData({
         refreshing: true,

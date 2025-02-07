@@ -1,10 +1,9 @@
  <view class="messages-container">
     <!-- 下拉刷新 -->
     <scroll-view 
-        scroll-y
-        refresher-enabled
+        scroll-y 
+        refresher-enabled="{{false}}"
         refresher-triggered="{{refreshing}}"
-        bindrefresherrefresh="onRefresh"
         bindscrolltolower="onReachBottom"
     >
         <!-- 消息列表 -->
