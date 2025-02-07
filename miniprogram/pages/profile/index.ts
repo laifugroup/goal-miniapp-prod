@@ -4,7 +4,7 @@ import { UserInfo } from '../../utils/types';
 Page({
     data: {
         userInfo: {} as UserInfo,
-        isVip:true,
+        isVip:false,
         vipExpireDate:'2025-01-08',
         menuItems: [
             { id: 'goals', icon: '🎯', title: '我的目标', badge: 3 },
@@ -20,7 +20,7 @@ Page({
 
     navigateToVip() {
         wx.navigateTo({
-            url: '/pages/vip/benefits'
+            url: '/pages/vip/index'
         });
     },
 

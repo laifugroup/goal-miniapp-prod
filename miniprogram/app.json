@@ -1,9 +1,9 @@
 {
   "entryPagePath": "pages/launch/index",
   "pages": [
+    "pages/launch/index",
     "pages/settings/index",
     "pages/calendar/index",
-    "pages/launch/index",
     "pages/login/index",
     "pages/square/index",
     "pages/checkin/index",

@@ -1,7 +1,7 @@
 <view class="benefits-container">
   <!-- 头部 -->
   <view class="header">
-    <text class="title">VIP会员权益</text>
+    <text class="title">认证激励师权益</text>
     <text wx:if="{{isVip}}" class="expire-date">有效期至：{{vipExpireDate}}</text>
   </view>
 
@@ -9,8 +9,8 @@
   <view class="comparison-table">
     <!-- 表头 -->
     <view class="table-header">
-      <view class="header-item normal-column text-center">普通会员</view>
-      <view class="header-item vip-column text-center">VIP会员</view>
+      <view class="header-item normal-column text-center">未认证</view>
+      <view class="header-item vip-column text-center">已认证</view>
     </view>
 
     <!-- 权益对比行 -->
@@ -38,6 +38,6 @@
   <!-- 操作按钮 -->
   <view class="actions">
     <button wx:if="{{!isVip}}" class="upgrade-btn" bindtap="handleUpgrade">立即升级</button>
-    <button wx:else class="renew-btn" bindtap="handleRenew">续费会员</button>
+    <button wx:else class="renew-btn" bindtap="handleRenew">立即认证</button>
   </view>
 </view>

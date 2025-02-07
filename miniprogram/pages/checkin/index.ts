@@ -19,7 +19,7 @@ Page({
       currentTab: 0, // 当前选中的 tab
       checkinList: [] as CheckinItem[], // 打卡列表
       page: 1,
-      loading: false,
+      refreshing: false,
       hasMore: true,
       uncheckedCount:11,
       reminderCount:22
@@ -43,22 +43,34 @@ Page({
   
     // 加载数据
     async loadData() {
-      if (this.data.loading || !this.data.hasMore) return;
+      if (this.data.refreshing || !this.data.hasMore) return;
   
-      this.setData({ loading: true });
+      this.setData({ refreshing: true });
   
-      // 模拟请求
+     try{
+          // 模拟请求
       const newData = await this.mockRequest();
   
       this.setData({
         checkinList: this.data.page === 1 ? newData : [...this.data.checkinList, ...newData],
-        loading: false,
+        refreshing: false,
         hasMore: newData.length >= 10
       });
+     }catch(error){
+        wx.showToast({
+            title: '加载失败',
+            icon: 'error'
+          });
+     }
+     finally{
+        console.log("stopPullDownRefresh")
+         wx.stopPullDownRefresh()
+     }
     },
   
     // 下拉刷新
-    onRefresh() {
+    onPullDownRefresh() {
+        console.log("onPullDownRefresh")
       this.setData({
         page: 1,
         hasMore: true
@@ -67,7 +79,8 @@ Page({
     },
   
     // 上拉加载更多
-    onLoadMore() {
+    onReachBottom() {
+        console.log("onReachBottom")
       if (!this.data.hasMore) return;
       this.setData({ page: this.data.page + 1 });
       this.loadData();

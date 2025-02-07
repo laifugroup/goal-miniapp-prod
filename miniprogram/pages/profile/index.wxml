@@ -34,8 +34,8 @@
             <image class="vip-icon" src="{{isVip ? '/assets/images/vip-icon-active.svg' : '/assets/images/vip-icon.svg'}}" />
         </view>
         <view class="vip-text">
-            <text class="vip-status">{{isVip ? 'VIP会员' : '普通会员'}}</text>
-            <text wx:if="{{!isVip}}" class="vip-tip">立即升级，享受专属特权</text>
+            <text class="vip-status">{{isVip ? '高级认证激励师' : '未认证激励师'}}</text>
+            <text wx:if="{{!isVip}}" class="vip-tip">立即认证，享受开发者一对一专属服务</text>
             <text wx:else class="vip-expire">有效期至：{{vipExpireDate}}</text>
         </view>
         </view>

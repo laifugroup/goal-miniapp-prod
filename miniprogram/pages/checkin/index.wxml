@@ -4,7 +4,7 @@
     <view class="tab-item {{currentTab === 0 ? 'active' : ''}}"
       bindtap="switchTab"
       data-index="0">
-      我的激励
+      我的目标
       <view wx:if="{{uncheckedCount > 0}}" class="badge">
         {{uncheckedCount > 99 ? '99+' : uncheckedCount}}
       </view>
@@ -21,11 +21,11 @@
 
   <!-- 列表区域 -->
   <scroll-view class="list-container"
-    scroll-y
-    enable-back-to-top
-    refresher-enabled
-    bindrefresherrefresh="onRefresh"
-    bindscrolltolower="onLoadMore">
+    scroll-y 
+    bindrefresherrefresh="onPullDownRefresh"
+    refresher-enabled="{{true}}"
+    refresher-triggered="{{refreshing}}"
+    bindscrolltolower="onReachBottom">
     <block wx:for="{{checkinList}}" wx:key="id">
       <view class="list-item" bindtap="checkinDetail">
         <view class="item-content">
