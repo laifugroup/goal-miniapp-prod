@@ -4,8 +4,8 @@
         <view class="user-info">
             <image class="avatar" src="{{userInfo.avatarUrl || '/assets/images/default-avatar.svg'}}" mode="aspectFill" />
             <view class="info">
-                <view class="name">{{userInfo.nickName || '红光1号'}}</view>
-                <view class="bio">{{userInfo.bio || '王腾有大帝之资~'}}</view>
+                <view class="name">{{userInfo.nickName || '-'}}</view>
+                <view class="bio">{{userInfo.bio || '-~'}}</view>
             </view>
         </view>
         <view class="stats">

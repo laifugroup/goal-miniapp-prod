@@ -23,7 +23,7 @@ import { MessageRsp } from '../../utils/types';
         const res = await getMessages({ page, pageSize });
         const newData = res.data.records
         this.setData({
-          messagesList: page === 1 ? newData : this.data.messagesList.concat(newData),
+          messagesList: this.data.page === 1 ? newData : [...this.data.messagesList, ...newData],
           hasMore: newData.length >= pageSize
         });
      } catch (error) {

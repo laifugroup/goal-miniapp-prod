@@ -1,4 +1,4 @@
-<view class="container">
+<view class="square-container">
     <view class="banner-container">
         <swiper class="banner-swiper" indicator-dots autoplay circular>
             <block wx:for="{{banners}}" wx:key="id">
@@ -24,4 +24,44 @@
             </block>
         </view>
     </view>
+    
+      <!-- 列表区域 -->
+  <scroll-view class="list-container"
+  scroll-y 
+    bindrefresherrefresh="onPullDownRefresh"
+    refresher-enabled="{{false}}"
+    refresher-triggered="{{refreshing}}"
+    bindscrolltolower="onReachBottom">
+    <block wx:for="{{checkinList}}" wx:key="id">
+      <view class="list-item" bindtap="checkinDetail">
+        <view class="item-content">
+          <view class="item-creator">
+            <text class="creator-name">{{item.creator.name}}</text>
+            <text class="create-date">{{item.createDate}}</text>
+            <text class="create-text">创建了目标</text>
+          </view>
+          <text class="item-title">{{item.title}}</text>
+          <view class="progress-info">
+            <view class="progress-bar">
+              <view class="progress-inner" style="width: {{(item.currentDay/item.totalDays * 100)}}%"></view>
+            </view>
+            <view class="progress-text">
+                <text class="tips">已招募 </text>
+              <text class="current">{{item.currentDay}}</text>
+              <text class="separator">/</text>
+              <text class="total">{{item.totalDays}}人</text>
+            </view>
+          </view>
+        </view>
+        <view class="item-right">
+          <view class="status-group">
+            <text class="today-text">瓜分￥978元</text>
+            <view class="item-status {{item.checked ? 'checked' : 'unchecked'}}">
+              {{item.checked ? '已招募' : '招募中'}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
 </view>

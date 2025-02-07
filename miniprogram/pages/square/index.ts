@@ -4,18 +4,21 @@ import { Banner, QuickAction } from '../../utils/types'; // 导入类型
 Page({
     data: {
         banners: [] as Banner[], // 存储 banner 数据
-        quickActions: []as QuickAction[] // 存储快捷按钮数据
+        quickActions: []as QuickAction[], // 存储快捷按钮数据
+        checkinList: [] as CheckinItem[], // 打卡列表
+        page: 1,
+        refreshing: false,
     },
 
     onLoad() {
         this.fetchBanners();
         this.setQuickActions(); // 设置快捷按钮
+        this.loadData()
     },
 
     async fetchBanners() {
         try {
             const response = await getBanners();
-            console.log('Banners response:', response); // 添加日志
             if (response.data && Array.isArray(response.data)) {
                 this.setData({
                     banners: response.data // 设置 banner 数据
@@ -25,6 +28,47 @@ Page({
             console.error('获取 banners 失败:', error);
         }
     },
+    // 上拉加载更多
+    onReachBottom() {
+        console.log("onReachBottom")
+      this.setData({ page: this.data.page + 1 });
+      this.loadData();
+    },
+
+       // 下拉刷新
+    onPullDownRefresh() {
+        console.log("onPullDownRefresh")
+      this.setData({
+        page: 1,
+        hasMore: true
+      });
+      this.loadData();
+    },
+
+     // 加载数据
+     async loadData() {
+        if (this.data.refreshing ) return;
+        this.setData({ refreshing: true });
+       try{
+            // 模拟请求
+        const newData = await this.mockRequest1();
+    
+        this.setData({
+          checkinList: this.data.page === 1 ? newData : [...this.data.checkinList, ...newData],
+          refreshing: false,
+          hasMore: newData.length >= 10
+        });
+       }catch(error){
+          wx.showToast({
+              title: '加载失败',
+              icon: 'error'
+            });
+       }
+       finally{
+          console.log("stopPullDownRefresh")
+           wx.stopPullDownRefresh()
+       }
+      },
 
     // 添加图片加载事件处理
     onImageLoad(e: any) {
@@ -47,5 +91,32 @@ Page({
         this.setData({
             quickActions // 设置快捷按钮数据
         });
-    }
+    },
+
+
+      // 修改模拟请求数据
+      mockRequest1(): Promise<CheckinItem[]> {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            const data = Array.from({ length: 10 }).map((_, i) => {
+              const totalDays = 21; // 固定21天
+              const currentDay = Math.floor(Math.random() * (totalDays + 1)); // 随机当前天数
+              
+              return {
+                id: Date.now() + i,
+                title: `坚持锻炼，30天减重10斤 ${this.data.page * 10 + i}`,
+                creator: {
+                  name: '李四张三',  // 这里可以是动态数据
+                },
+                createDate: '2024-01-10',
+                checked: Math.random() > 0.5, // 随机打卡状态
+                currentDay,
+                totalDays,
+                progress: Math.floor((currentDay / totalDays) * 100) // 计算进度
+              };
+            });
+            resolve(data);
+          }, 500);
+        });
+      }
 });
