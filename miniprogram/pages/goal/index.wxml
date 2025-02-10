@@ -28,7 +28,7 @@
         </view>
         <view class="stat-item">
           <text class="num">¥100</text>
-          <text class="label">保证金</text>
+          <text class="label">瓜分金额</text>
         </view>
       </view>
     </view>

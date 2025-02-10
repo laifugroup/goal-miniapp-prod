@@ -26,7 +26,6 @@ Page({
       })
     },
   
-    
   // 处理日期选择
   handleDateChange(e: WechatMiniprogram.PickerChange) {
     this.setData({
@@ -48,14 +47,12 @@ Page({
       })
     },
 
-
     handleAgreementChange(e: WechatMiniprogram.CheckboxGroupChange) {
       this.setData({
         hasAgreed: e.detail.value.includes('agreed')
       });
     },
 
-    
   // 显示协议弹窗
   showAgreement() {
     this.setData({
@@ -70,17 +67,11 @@ Page({
     });
   },
 
- 
-
   // 防止弹窗穿透
   preventTouchMove() {
     return;
   },
 
-  
-
-
-  
     // 提交表单
     handleSubmit() {
       const { selectedType, description, deposit } = this.data
@@ -113,14 +104,15 @@ Page({
         return
       }
 
-
       if (!this.data.hasAgreed) {
         this.setData({ showAgreementModal: true })
         return
       }
   
       // 提交逻辑
-      wx.showLoading({ title: '正在创建...' })
-      // 这里可以添加你的提交逻辑
+      // wx.showLoading({ title: '正在创建...' })
+      wx.switchTab({
+        url: '/pages/square/index'
+      });
     }
   })

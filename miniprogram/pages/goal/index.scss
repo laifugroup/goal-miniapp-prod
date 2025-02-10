@@ -2,12 +2,13 @@
     min-height: 100vh;
     background: #f5f6fa;
     padding-bottom: calc(128rpx + env(safe-area-inset-bottom));
+    padding-top: 8rpx;
   }
   
   .target-card {
     background: #fff;
-    padding: 30rpx;
-    margin: 20rpx;
+    padding: 24rpx;
+    margin: 24rpx;
     border-radius: 12rpx;
     box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
   

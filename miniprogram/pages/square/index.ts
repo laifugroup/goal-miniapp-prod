@@ -76,6 +76,13 @@ Page({
         console.log('Image loaded:', e);
     },
 
+
+    checkinDetail(){
+        wx.navigateTo({
+            url: '/pages/goal/index'
+          });
+    },
+
     setQuickActions() {
         const quickActions: QuickAction[] = [
             { id: 'target', title: '目标激励', icon: '🎯', path: '/pages/target/index' },
