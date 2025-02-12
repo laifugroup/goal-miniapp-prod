@@ -1,10 +1,12 @@
 import { get,post } from './request';
-import { RspPage,PointItemRsp,LoginParams,PageParams, Rsp, LoginRsp, Banner, MessageParams, MessageRsp, UserInfo } from './types'; // 导入类型
+import { RspPage,PointItemRsp,LoginWxCodeParams,LoginPasswordParams,PageParams, Rsp, LoginRsp, Banner, MessageParams, MessageRsp, UserInfo } from './types'; // 导入类型
 
-export const login = (params: LoginParams): Promise<Rsp<LoginRsp>> => {
+export const loginWithPassword = (params: LoginPasswordParams): Promise<Rsp<LoginRsp>> => {
     return post('/v1/oauth2/login', params);
 }; 
-
+export const loginWithWxCode = (params: LoginWxCodeParams): Promise<Rsp<LoginRsp>> => {
+  return post('/v1/oauth2/loginWithWxCode', params);
+}; 
 
 export const getBanners = (): Promise<Rsp<Banner[]>> => {
     return get('/v1/banners/square');

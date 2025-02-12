@@ -1,7 +1,10 @@
 // 请求参数类型
-export interface LoginParams {
+export interface LoginPasswordParams {
     username: string;
     password: string;
+}
+export interface LoginWxCodeParams {
+  code: string;
 }
 
 export interface Rsp<T> {

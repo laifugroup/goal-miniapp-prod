@@ -7,27 +7,25 @@ type RequestMethod = 'GET' | 'POST' | 'OPTIONS' | 'HEAD' | 'PUT' | 'DELETE' | 'T
 
 const request = <T>(url: string, method: RequestMethod = 'GET', data: any = {}): Promise<T> => {
     return new Promise((resolve, reject) => {
+        wx.showLoading({title:"加载中..."})
         const accessToken = wx.getStorageSync('accessToken');
-        
         // 构建完整的 URL
         const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
-        
         // 构建基础 header
         const header: Record<string, string> = {
             'Content-Type': 'application/json'
         };
-        
         // 只在 accessToken 存在时添加到 header
         if (accessToken) {
             header.Authorization = `Bearer ${accessToken}`;
         }
-        
         wx.request({
             url: fullUrl,
             method,
             data,
             header,
             success: (res) => {
+              wx.hideLoading()
                 if (res.statusCode === 200) {
                     resolve(res.data as T);
                 } else {
@@ -35,6 +33,7 @@ const request = <T>(url: string, method: RequestMethod = 'GET', data: any = {}):
                 }
             },
             fail: (err) => {
+              wx.hideLoading()
                 reject(err);
             }
         });

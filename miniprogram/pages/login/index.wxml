@@ -1,21 +1,11 @@
 <view class="login-container">
-    <view class="login-form">
-        <view class="input-group">
-            <input 
-                type="text" 
-                placeholder="请输入用户名" 
-                bindinput="onUsernameInput"
-                value="{{username}}"
-            />
-        </view>
-        <view class="input-group">
-            <input 
-                type="password" 
-                placeholder="请输入密码" 
-                bindinput="onPasswordInput"
-                value="{{password}}"
-            />
-        </view>
-        <button class="login-btn" bindtap="handleLogin">登录</button>
-    </view>
-</view> 
+   <view class="auth-container">
+      <view class="auth-text">登录授权</view>
+      <view class="logo-container">
+          <image class="logo" src="/assets/images/logo.svg" alt="WeChat Logo" />
+          <image class="arrow" src="/assets/images/arrow.svg" alt="Arrow" />
+          <image class="logo" src="/assets/images/logo.svg" alt="Mini Program Logo" />
+      </view>
+   </view>
+    <button class="login-btn" bindtap="handleLogin">轻触微信授权</button>
+</view>

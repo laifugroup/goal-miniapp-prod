@@ -11,18 +11,18 @@ App<IAppOption>({
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
     // 登录
-    const accessToken = wx.getStorageSync('accessToken') || "";
-    console.log("accessToken="+accessToken)
-    if (!accessToken) {
-      wx.login({
-        success: res => {
-          var code=res.code
-          const loginRes =   LoginApi({ username:code,password:code });
-          loginRes.then((res)=>{
-            wx.setStorageSync('accessToken', res.data.accessToken);
-          })
-        },
-      })
-    }
+    // const accessToken = wx.getStorageSync('accessToken') || "";
+    // console.log("accessToken="+accessToken)
+    // if (!accessToken) {
+    //   wx.login({
+    //     success: res => {
+    //       var code=res.code
+    //       const loginRes =   LoginApi({ username:code,password:code });
+    //       loginRes.then((res)=>{
+    //         wx.setStorageSync('accessToken', res.data.accessToken);
+    //       })
+    //     },
+    //   })
+    // }
   },
 })

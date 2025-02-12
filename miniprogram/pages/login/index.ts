@@ -1,58 +1,45 @@
-import { login } from '../../utils/api';
+import { loginWithWxCode } from '../../utils/api';
 
 Page({
     data: {
         username: '',
-        password: ''
+    },
+    onLoad() {
+      //  this.handleLogin();
     },
 
-    // 处理用户名输入
-    onUsernameInput(e: WechatMiniprogram.Input) {
-        this.setData({
-            username: e.detail.value
-        });
-    },
-
-    // 处理密码输入
-    onPasswordInput(e: WechatMiniprogram.Input) {
-        this.setData({
-            password: e.detail.value
-        });
+    onPullDownRefresh() {
+      wx.stopPullDownRefresh()
     },
 
     // 处理登录
     async handleLogin() {
-        const { username, password } = this.data;
-        
-        if (!username || !password) {
-            wx.showToast({
-                title: '请输入用户名和密码',
-                icon: 'none'
-            });
-            return;
-        }
-
         try {
-            const res = await login({ username, password });
-            if (res.data.accessToken) {
-                wx.setStorageSync('accessToken', res.data.accessToken);
-                wx.showToast({
+            wx.login({
+              success: res => {
+                var wxCode=res.code
+                const loginRes =   loginWithWxCode({ code:wxCode });
+                loginRes.then((res)=>{
+                  wx.setStorageSync('accessToken', res.data.accessToken);
+                  wx.showToast({
                     title: '登录成功',
                     icon: 'success'
                 });
-                wx.reLaunch({
-                    url: '/pages/square/index'
-                });
-            } else {
-                wx.showToast({
-                    title: res.message || '登录失败',
-                    icon: 'error'
-                });
-            }
+                    wx.reLaunch({
+                      url:  '/pages/square/index'
+                  });
+                }).catch((error)=>{
+                   wx.showToast({
+                        title: error || '登录失败',
+                        icon: 'error'
+                    });
+              })
+              },
+            })
         } catch (error) {
             console.log(error);
             wx.showToast({
-                title: '登录失败',
+                title:  '登录失败',
                 icon: 'error'
             });
         }

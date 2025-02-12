@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100">
+  <!-- 向右的箭头 -->
+  <line x1="25" y1="30" x2="175" y2="30" stroke="black" stroke-width="2" marker-end="url(#arrowhead)" />
+  
+  <!-- 向左的箭头 -->
+  <line x1="175" y1="70" x2="25" y2="70" stroke="black" stroke-width="2" marker-end="url(#arrowhead)" />
+  
+  <!-- 定义箭头头部 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="black" />
+    </marker>
+  </defs>
+</svg>
