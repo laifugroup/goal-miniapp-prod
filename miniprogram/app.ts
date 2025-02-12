@@ -1,6 +1,6 @@
 // app.ts
 
-import { login as LoginApi } from '../miniprogram/utils/api';
+import { login as LoginApi } from './utils/api'; 
 
 
 App<IAppOption>({
@@ -11,13 +11,18 @@ App<IAppOption>({
     // logs.unshift(Date.now())
     // wx.setStorageSync('logs', logs)
     // 登录
-    wx.login({
-      success: res => {
-        var code=res.code
-        const res1 =   LoginApi({ username:code,password:code });
-        console.log("code="+res1)
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      },
-    })
+    const accessToken = wx.getStorageSync('accessToken') || "";
+    console.log("accessToken="+accessToken)
+    if (!accessToken) {
+      wx.login({
+        success: res => {
+          var code=res.code
+          const loginRes =   LoginApi({ username:code,password:code });
+          loginRes.then((res)=>{
+            wx.setStorageSync('accessToken', res.data.accessToken);
+          })
+        },
+      })
+    }
   },
 })

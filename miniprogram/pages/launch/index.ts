@@ -1,6 +1,9 @@
 Page({
     onLoad() {
-        this.checkLoginStatus();
+        //this.checkLoginStatus();
+        wx.reLaunch({
+          url: '/pages/square/index' 
+      });
     },
 
     checkLoginStatus() {
