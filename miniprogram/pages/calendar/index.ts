@@ -11,17 +11,21 @@ Page({
       prev: true, // 上一个月按钮是否显示
       next: true, // 下一个月按钮是否显示
       speciallist: [
-        { date: '2025-01-08', background: 'yellow', text:'未打卡',color: '#ffe', textBgcolor: '#fff' },
-        { date: '2025-01-01', background: 'red', text: '已打卡'  },
-        { date: '2025-01-02', background: 'red', text: '已打卡' },
-        { date: '2025-01-03', background: 'orange', text: '已打卡' },
-        { date: '2025-01-04', background: 'orange', text: '已打卡' },
-        { date: '2025-01-05', background: 'orange', text: '已打卡' },
-        { date: '2025-01-06', background: 'orange', text: '已打卡' },
-        { date: '2025-01-07', background: 'orange', text: '已打卡' },
+        { date: '2025-02-01', background: 'orange', text: '已打卡'  },
+        { date: '2025-02-02', background: 'orange', text: '未打卡' },
+        { date: '2025-02-03', background: 'orange', text: '已打卡' },
+        { date: '2025-02-04', background: 'orange', text: '已打卡' },
+        { date: '2025-02-05', background: 'orange', text: '已打卡' },
+        { date: '2025-02-06', background: 'orange', text: '已打卡' },
+        { date: '2025-02-07', background: 'orange', text: '已打卡' },
+        { date: '2025-02-08', background: 'orange', text:'未打卡',color: '#3ef', textBgcolor: '#fff' },
+        { date: '2025-02-09', background: 'orange', text: '已打卡' },
+        { date: '2025-02-10', background: 'orange', text: '已打卡' },
+        { date: '2025-02-11', background: 'orange', text: '已打卡' },
+        { date: '2025-02-12', background: 'orange', text: '未打卡' },
         ],
         circle_show: true,
-        mystatus: [1, 2, 1, 1, 3, 1, 1, 2, 9, 9, 1, null, 1, 2, 1, 9, 9, null, 0, 1, 0, 3, 9, 9, 1, 1, 0, 0, 1, 9]
+        mystatus: [1,null,3,4,1,6,1,1,1,1,1 ]
     },
   
     onLoad() {
@@ -44,10 +48,10 @@ Page({
     console.log(e)
     const currentYear = e.detail.currentYear;
     const currentMonth = e.detail.currentMonth;
-    wx.showModal({
-      title: '当前日期',
-      content: '当前年份：' + currentYear + '年\n当前月份：' + currentMonth + '月'
-    });
+    // wx.showModal({
+    //   title: '当前日期',
+    //   content: '当前年份：' + currentYear + '年\n当前月份：' + currentMonth + '月'
+    // });
   },
   /**
     * 点击下个月
@@ -56,10 +60,10 @@ Page({
     console.log(e)
     const currentYear = e.detail.currentYear;
     const currentMonth = e.detail.currentMonth;
-    wx.showModal({
-      title: '当前日期',
-      content: '当前年份：' + currentYear + '年\n当前月份：' + currentMonth + '月'
-    });
+    // wx.showModal({
+    //   title: '当前日期',
+    //   content: '当前年份：' + currentYear + '年\n当前月份：' + currentMonth + '月'
+    // });
   }
 
 

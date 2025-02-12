@@ -35,7 +35,7 @@
     circle_show="{{true}}"
     pitch_on='circle'
     closelaststyle='{{true}}'
-    colored="#000"
+    colored="#fff"
     weekheight='{{150}}'
     isTodaybtn='{{false}}'
     allshow='{{true}}'

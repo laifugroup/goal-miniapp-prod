@@ -57,7 +57,7 @@
           <view class="status-group">
             <text class="today-text">瓜分￥978元</text>
             <view class="item-status {{item.checked ? 'checked' : 'unchecked'}}">
-              {{item.checked ? '已完成' : '招募中'}}
+              {{item.checked ? '招募结束' : '招募中'}}
             </view>
           </view>
         </view>
