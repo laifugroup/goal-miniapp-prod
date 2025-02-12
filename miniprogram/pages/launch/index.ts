@@ -1,12 +1,9 @@
-import { loginWithWxCode  } from '../../utils/api'; 
+import { hiddenLoginWithWxCode  } from '../../utils/api'; 
 
 
 Page({
     onLoad() {
         this.checkLoginStatus();
-      //   wx.reLaunch({
-      //     url: '/pages/square/index' 
-      // });
     },
 
     checkLoginStatus() {
@@ -15,7 +12,7 @@ Page({
           wx.login({
             success: res => {
               var code=res.code
-              const loginRes =   loginWithWxCode({ code:code});
+              const loginRes =   hiddenLoginWithWxCode({ code:code});
               loginRes.then((res)=>{
                 wx.setStorageSync('accessToken', res.data.accessToken);
                   wx.reLaunch({

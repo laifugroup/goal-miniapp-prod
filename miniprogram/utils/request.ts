@@ -5,9 +5,11 @@ const { API_BASE_URL } = getEnvConfig();
 // 添加类型定义
 type RequestMethod = 'GET' | 'POST' | 'OPTIONS' | 'HEAD' | 'PUT' | 'DELETE' | 'TRACE' | 'CONNECT';
 
-const request = <T>(url: string, method: RequestMethod = 'GET', data: any = {}): Promise<T> => {
+const request = <T>(url: string, method: RequestMethod = 'GET', data: any = {},showLoading: boolean = true): Promise<T> => {
     return new Promise((resolve, reject) => {
+      if(showLoading){
         wx.showLoading({title:"加载中..."})
+      }
         const accessToken = wx.getStorageSync('accessToken');
         // 构建完整的 URL
         const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
@@ -25,7 +27,9 @@ const request = <T>(url: string, method: RequestMethod = 'GET', data: any = {}):
             data,
             header,
             success: (res) => {
-              wx.hideLoading()
+              if(showLoading){
+                wx.hideLoading()
+              }
                 if (res.statusCode === 200) {
                     resolve(res.data as T);
                 } else {
@@ -33,19 +37,21 @@ const request = <T>(url: string, method: RequestMethod = 'GET', data: any = {}):
                 }
             },
             fail: (err) => {
-              wx.hideLoading()
+              if(showLoading){
+                wx.hideLoading()
+              }
                 reject(err);
             }
         });
     });
 };
 
-const get = <T>(url: string, data: any = {}): Promise<T> => {
-    return request<T>(url, 'GET', data);
+const get = <T>(url: string, data: any = {},showLoading: boolean = true): Promise<T> => {
+    return request<T>(url, 'GET', data,showLoading);
 };
 
-const post = <T>(url: string, data: any = {}): Promise<T> => {
-    return request<T>(url, 'POST', data);
+const post = <T>(url: string, data: any = {},showLoading: boolean = true): Promise<T> => {
+    return request<T>(url, 'POST', data,showLoading);
 };
 
 

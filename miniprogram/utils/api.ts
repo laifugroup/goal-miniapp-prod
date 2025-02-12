@@ -7,7 +7,9 @@ export const loginWithPassword = (params: LoginPasswordParams): Promise<Rsp<Logi
 export const loginWithWxCode = (params: LoginWxCodeParams): Promise<Rsp<LoginRsp>> => {
   return post('/v1/oauth2/loginWithWxCode', params);
 }; 
-
+export const hiddenLoginWithWxCode = (params: LoginWxCodeParams): Promise<Rsp<LoginRsp>> => {
+  return post('/v1/oauth2/loginWithWxCode', params,false);
+}; 
 export const getBanners = (): Promise<Rsp<Banner[]>> => {
     return get('/v1/banners/square');
 }; 
