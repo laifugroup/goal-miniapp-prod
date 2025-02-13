@@ -1,6 +1,6 @@
 <view class="launch-container">
     <view class="content">
-        <image class="logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjkwIiBmaWxsPSIjMDdDMTYwIi8+CiAgICA8cGF0aCBkPSJNNjAgMTAwTDkwIDEzMEwxNDAgODAiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMTIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4=" mode="aspectFit" />
+        <image class="logo" src="/assets/images/logo.svg" mode="aspectFit" />
         <text class="slogan">分解任务 目标必成</text>
     </view>
     

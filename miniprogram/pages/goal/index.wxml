@@ -1,18 +1,16 @@
 <view class="detail-container">
   <!-- 顶部信息卡片 -->
   <view class="target-card">
-
-  <!-- 创建人信息 -->
-  <!-- 创建人信息 -->
-<view class="creator-info">
-  <view class="creator-left">
-    <view class="creator-main">
-      <image class="creator-avatar" src="{{creator.avatar}}" mode="aspectFill"></image>
-      <text class="creator-name">{{creator.name}}</text>
+    <!-- 创建人信息 -->
+    <view class="creator-info">
+      <view class="creator-left">
+        <view class="creator-main">
+          <image class="creator-avatar" src="{{creator.avatar}}" mode="aspectFill"></image>
+          <text class="creator-name">{{creator.name}}</text>
+        </view>
+        <text class="creator-label">发起了一个挑战</text>
+      </view>
     </view>
-    <text class="creator-label">发起了一个挑战</text>
-  </view>
-</view>
 
     <view class="target-info">
       <view class="target-title">每日晨跑5公里</view>
@@ -34,25 +32,99 @@
     </view>
   </view>
 
-<!-- 激励师横向列表 -->
-<view class="mentors-section">
-  <view class="section-header">
-    <view class="title-group">
-      <text class="section-title">激励师</text>
-      <text class="section-desc">(立即加入，瓜分奖励)</text>
+  <!-- 标签页 -->
+  <view class="tabs">
+    <view class="tab-item {{currentTab === 0 ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-index="0">
+      激励师
     </view>
-    <view class="join-mentor-btn" bindtap="handleJoinMentor">加入</view>
+    <view class="tab-item {{currentTab === 1 ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-index="1">
+      打卡记录
+    </view>
+    <view class="tab-item {{currentTab === 2 ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-index="2">
+      激励记录
+    </view>
   </view>
-  <scroll-view scroll-x :show-scrollbar="false" enhanced  class="mentors-list">
-    <view class="mentor-item" wx:for="{{mentors}}" wx:key="id">
-      <image class="mentor-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
-      <text class="mentor-name">{{item.name}}</text>
-    </view>
+
+
+
+  <!-- 列表区域 -->
+  <scroll-view class="list-container"
+    scroll-y 
+    refresher-enabled="{{false}}"
+    refresher-triggered="{{refreshing}}"
+    bindscrolltolower="onReachBottom"
+  >
+    <block wx:for="{{checkinList}}" wx:key="id">
+      <view class="list-item" bindtap="checkinDetail">
+        <view class="item-content">
+          <view class="item-creator">
+            <text class="creator-name">{{item.creator.name}}</text>
+            <text class="create-date">{{item.createDate}}</text>
+            <text class="create-text">创建了目标</text>
+          </view>
+          <text class="item-title">{{item.title}}</text>
+          <view class="progress-info">
+            <view class="progress-bar">
+              <view class="progress-inner" style="width: {{(item.currentDay/item.totalDays * 100)}}%"></view>
+            </view>
+            <view class="progress-text">
+              <text class="current">{{item.currentDay}}</text>
+              <text class="separator">/</text>
+              <text class="total">{{item.totalDays}}天</text>
+            </view>
+          </view>
+        </view>
+        <view class="item-right">
+          <view class="status-group">
+            <text class="today-text">今日</text>
+            <view class="item-status {{item.checked ? 'checked' : 'unchecked'}}">
+              {{item.checked ? '已打卡' : '未打卡'}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 加载更多 -->
+      <view wx:if="{{hasMore}}" class="loading-more">
+          <text>加载中...</text>
+      </view>
+      <view wx:else class="no-more">
+          <text>没有更多数据了</text>
+      </view>
   </scroll-view>
-</view>
+  
+  <!-- <scroll-view scroll-x :show-scrollbar="false" enhanced class="list">
+    <view>{{currentTab}}</view>
+    <text class="section-title">激励师</text>
+    <text class="section-desc">(立即加入，瓜分奖励)</text>
+  </scroll-view> -->
+
+  <!-- 激励师横向列表 -->
+  <!-- <view wx:if="{{currentTab === 0}}" class="mentors-section">
+    <view class="section-header">
+      <view class="title-group">
+        <text class="section-title">激励师</text>
+        <text class="section-desc">(立即加入，瓜分奖励)</text>
+      </view>
+      <view class="join-mentor-btn" bindtap="handleJoinMentor">加入</view>
+    </view>
+    <scroll-view scroll-x :show-scrollbar="false" enhanced class="mentors-list">
+      <view class="mentor-item" wx:for="{{mentors}}" wx:key="id">
+        <image class="mentor-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+        <text class="mentor-name">{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view> -->
 
   <!-- 打卡按钮/状态 -->
-  <view class="checkin-section">
+  <!-- <view class="checkin-section">
     <block wx:if="{{!hasJoined}}">
       <button class="join-btn" bindtap="handleJoin">立即参与</button>
     </block>
@@ -61,11 +133,5 @@
         {{todayChecked ? '今日已打卡' : '立即打卡'}}
       </button>
     </block>
-  </view>
-
-   <!-- 底部操作按钮 -->
-  <view class="action-buttons">
-    <button class="btn check-btn" bindtap="handleCheck">打卡记录</button>
-    <button class="btn motivate-btn" bindtap="handleMotivate">激励记录</button>
-  </view>
+  </view> -->
 </view>

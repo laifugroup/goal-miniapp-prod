@@ -23,7 +23,7 @@ interface IMentor {
   
   Page({
     data: {
-      currentTab: 'records' as 'records' | 'motivations',
+      currentTab: 0 as number,
       hasJoined: false,
       todayChecked: false,
       currentDay: 1,
@@ -72,10 +72,12 @@ interface IMentor {
   
     // 切换标签
     switchTab(e: WechatMiniprogram.TouchEvent) {
-      const tab = e.currentTarget.dataset.tab as 'records' | 'motivations';
-      this.setData({ currentTab: tab });
+      const index = Number(e.currentTarget.dataset.index); // 确保 index 是数字类型
+      this.setData({
+        currentTab: index,
+      });
     },
-  
+
     // 参与挑战
     async handleJoin() {
       try {
@@ -130,5 +132,27 @@ interface IMentor {
     // 获取激励记录
     async fetchMotivations() {
       // 实现获取激励记录的逻辑
+    },
+
+    // 刷新打卡记录
+    async refreshRecords() {
+      // 实现刷新打卡记录的逻辑
+      wx.stopPullDownRefresh();
+    },
+  
+    // 加载更多打卡记录
+    async loadMoreRecords() {
+      // 实现加载更多打卡记录的逻辑
+    },
+  
+    // 刷新激励记录
+    async refreshMotivations() {
+      // 实现刷新激励记录的逻辑
+      wx.stopPullDownRefresh();
+    },
+  
+    // 加载更多激励记录
+    async loadMoreMotivations() {
+      // 实现加载更多激励记录的逻辑
     }
   });

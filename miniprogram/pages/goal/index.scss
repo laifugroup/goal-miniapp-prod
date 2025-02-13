@@ -109,163 +109,185 @@
         }
       }
   }
-  
-  .mentors-section {
+
+
+  .tabs {
+    display: flex;
     background: #fff;
-    padding: 30rpx 0;
-    margin-bottom: 20rpx;
+    padding: 0 30rpx;
+    border-bottom: 1rpx solid #f0f0f0;
   
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 30rpx;
-      margin-bottom: 20rpx;
+    .tab-item {
+      position: relative;
+      flex: 1;
+      text-align: center;
+      padding: 24rpx 0;
+      font-size: 28rpx;
+      color: #666;
   
-      .title-group {
-        display: flex;
-        align-items: flex-end;
+      &.active {
+        color: #1890ff;
+        font-weight: 500;
   
-        .section-title {
-          font-size: 30rpx;
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 40rpx;
+          height: 4rpx;
+          background: #1890ff;
+          border-radius: 2rpx;
+        }
+      }
+  
+      .badge {
+        position: absolute;
+        top: 10rpx;
+        right: 50rpx;
+        min-width: 32rpx;
+        height: 32rpx;
+        line-height: 32rpx;
+        padding: 0 8rpx;
+        font-size: 20rpx;
+        color: #fff;
+        background: #ff4d4f;
+        border-radius: 16rpx;
+      }
+    }
+  }
+  
+  .list-container {
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  .list-item {
+    margin: 20rpx;
+    padding: 24rpx;
+    background: #fff;
+    border-radius: 12rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    .item-content {
+      flex: 1;
+      margin-right: 20rpx;
+  
+      .item-creator {
+        font-size: 24rpx;
+        color: #999;
+        margin-bottom: 12rpx;
+  
+        .creator-name {
+          color: #1890ff;
           font-weight: 500;
-          color: #333;
         }
   
-        .section-desc {
+        .create-date {
+          margin: 0 8rpx;
+        }
+  
+        .create-text {
+          color: #999;
+        }
+      }
+  
+      .item-createDate {
+        font-size: 24rpx;
+        color: #999;
+        margin-bottom: 12rpx;
+        display: block;
+      }
+  
+      .item-title {
+        font-size: 32rpx;
+        color: #333;
+        font-weight: 500;
+        margin-bottom: 16rpx;
+        display: block;
+      }
+  
+      .progress-info {
+        margin-top: 20rpx;
+  
+        .progress-bar {
+          height: 6rpx;
+          background: #f0f0f0;
+          border-radius: 3rpx;
+          margin-bottom: 12rpx;
+          overflow: hidden;
+  
+          .progress-inner {
+            height: 100%;
+            background: linear-gradient(90deg, #1890ff, #52c41a);
+            border-radius: 3rpx;
+            transition: width 0.3s ease;
+          }
+        }
+  
+        .progress-text {
           font-size: 24rpx;
           color: #999;
-          margin-left: 8rpx;
-        }
-      }
-      
-      .join-mentor-btn {
-        font-size: 28rpx;
-        color: #1890ff;
-        padding: 8rpx 20rpx;
-        border-radius: 24rpx;
-        border: 1rpx solid #1890ff;
-        background: rgba(24, 144, 255, 0.1);
-        
-        &:active {
-          opacity: 0.8;
+  
+          .current {
+            color: #1890ff;
+            font-weight: 500;
+          }
+  
+          .separator {
+            margin: 0 4rpx;
+          }
         }
       }
     }
   
-    .mentors-list {
-      white-space: nowrap;
-      padding: 0 20rpx;
+    .item-right {
+      display: flex;
+      align-items: center;
+      min-width: 120rpx;
   
-      // 隐藏滚动条
-      &::-webkit-scrollbar {
-        display: none;
-      }
-      
-      // 兼容性处理
-      scrollbar-width: none;  /* Firefox */
-      -ms-overflow-style: none;  /* IE and Edge */
+      .status-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
   
-      .mentor-item {
-        display: inline-block;
-        margin-right: 30rpx;
-        text-align: center;
-  
-        .mentor-avatar {
-          width: 100rpx;
-          height: 100rpx;
-          border-radius: 50%;
-        }
-  
-        .mentor-name {
+        .today-text {
           font-size: 24rpx;
           color: #666;
-          margin-top: 10rpx;
-          display: block;
+          margin-bottom: 8rpx;
+        }
+  
+        .item-status {
+          padding: 4rpx 12rpx;
+          border-radius: 4rpx;
+          font-size: 24rpx;
+          text-align: center;
+          white-space: nowrap;
+  
+          &.checked {
+            color: #52c41a;
+            background: rgba(82, 196, 26, 0.1);
+          }
+  
+          &.unchecked {
+            color: #ff4d4f;
+            background: rgba(255, 77, 79, 0.1);
+          }
         }
       }
     }
   }
   
-  .action-buttons {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20rpx 30rpx;
-    padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
-    background: #fff;
-    box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
-
-    .btn {
-      width: 300rpx;
-      height: 88rpx;
-      line-height: 88rpx;
-      text-align: center;
-      border-radius: 44rpx;
-      font-size: 30rpx;
-      margin: 0 10rpx;
-      border: none;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &.check-btn {
-        background: #1890ff;
-        color: #fff;
-      }
-
-      &.motivate-btn {
-        background: #52c41a;
-        color: #fff;
-      }
-
-      &:active {
-        opacity: 0.9;
-      }
-    }
-  }
-
-  .checkin-section {
-    padding: 30rpx;
+  
+  
+  .loading-more,
+  .no-more {
     text-align: center;
-
-    button {
-      width: 80%;
-      height: 88rpx;
-      border-radius: 44rpx;
-      font-size: 32rpx;
-      margin: 0 auto;
-      padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      
-      &.join-btn {
-        background: #1890ff;
-        color: #fff;
-
-        &:active {
-          opacity: 0.9;
-        }
-      }
-
-      &.checkin-btn {
-        background: #52c41a;
-        color: #fff;
-
-        &.checked {
-          background: #d9d9d9;
-        }
-
-        &:active {
-          opacity: 0.9;
-        }
-      }
-    }
+    padding: 30rpx;
+    font-size: 28rpx;
+    color: #999;
   }
