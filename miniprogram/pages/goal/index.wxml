@@ -37,92 +37,119 @@
     <view class="tab-item {{currentTab === 0 ? 'active' : ''}}"
       bindtap="switchTab"
       data-index="0">
-      激励师
+      目标分解
     </view>
     <view class="tab-item {{currentTab === 1 ? 'active' : ''}}"
       bindtap="switchTab"
       data-index="1">
-      打卡记录
+      激励师
     </view>
     <view class="tab-item {{currentTab === 2 ? 'active' : ''}}"
       bindtap="switchTab"
       data-index="2">
+      打卡记录
+    </view>
+    <view class="tab-item {{currentTab === 3 ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-index="3">
       激励记录
     </view>
   </view>
-
-
 
   <!-- 列表区域 -->
   <scroll-view class="list-container"
     scroll-y 
     refresher-enabled="{{false}}"
     refresher-triggered="{{refreshing}}"
-    bindscrolltolower="onReachBottom"
-  >
-    <block wx:for="{{checkinList}}" wx:key="id">
-      <view class="list-item" bindtap="checkinDetail">
-        <view class="item-content">
-          <view class="item-creator">
-            <text class="creator-name">{{item.creator.name}}</text>
-            <text class="create-date">{{item.createDate}}</text>
-            <text class="create-text">创建了目标</text>
-          </view>
-          <text class="item-title">{{item.title}}</text>
-          <view class="progress-info">
-            <view class="progress-bar">
-              <view class="progress-inner" style="width: {{(item.currentDay/item.totalDays * 100)}}%"></view>
-            </view>
-            <view class="progress-text">
-              <text class="current">{{item.currentDay}}</text>
-              <text class="separator">/</text>
-              <text class="total">{{item.totalDays}}天</text>
-            </view>
-          </view>
+    bindscrolltolower="onReachBottom">
+    
+  <!-- 任务列表 -->
+    <view class="task-list" wx:if="{{currentTab === 0}}">
+      <view class="task-item" wx:for="{{tasks}}" wx:key="id">
+        <view class="task-content">
+          <text class="task-title">#{{index + 1}} {{item.title}}</text>
+          <text class="checkin-count">已打卡 {{item.checkinCount}} 次</text>
+          <text class="create-time">{{item.decomposeTime}}创建</text>
         </view>
-        <view class="item-right">
-          <view class="status-group">
-            <text class="today-text">今日</text>
-            <view class="item-status {{item.checked ? 'checked' : 'unchecked'}}">
-              {{item.checked ? '已打卡' : '未打卡'}}
+      </view>
+    </view>
+    <!-- 激励师列表 -->
+    <view class="mentor-list" wx:if="{{currentTab === 1}}">
+      <view class="mentor-item" wx:for="{{mentors}}" wx:key="id">
+        <view class="mentor-info">
+          <image class="mentor-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+          <view class="mentor-details">
+            <view class="mentor-header">
+              <text class="mentor-name">{{item.name}}</text>
+              <text class="mentor-title">{{item.title}}</text>
+            </view>
+            <view class="mentor-stats">
+              <text class="remind-count">提醒: {{item.remindCount}}次</text>
+              <text class="join-time">{{item.joinTime}}加入</text>
             </view>
           </view>
         </view>
       </view>
-    </block>
+    </view>
+
+    <!-- 打卡记录列表 -->
+    <view class="record-list" wx:if="{{currentTab === 2}}">
+      <view class="record-item" wx:for="{{checkInList}}" wx:key="id">
+        <view class="record-header">
+          <image class="user-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+          <text class="user-name">{{item.username}}</text>
+         
+        </view>
+        <view class="record-content">{{item.content}}</view>
+        <view class="record-images" wx:if="{{item.images.length > 0}}">
+          <image 
+            wx:for="{{item.images}}" 
+            wx:for-item="image" 
+            wx:key="*this" 
+            src="{{image}}" 
+            mode="aspectFill"
+            bindtap="previewImage"
+            data-urls="{{item.images}}"
+            data-current="{{image}}"
+          ></image>
+        </view>
+        <text class="record-time">{{item.time}}</text>
+      </view>
+    </view>
+
+    <!-- 激励记录列表 -->
+    <view class="motivation-list" wx:if="{{currentTab === 3}}">
+      <view class="motivation-item" wx:for="{{motivations}}" wx:key="id">
+        <view class="motivation-header">
+          <image class="mentor-avatar" src="{{item.mentorAvatar}}" mode="aspectFill"></image>
+          <text class="mentor-name">{{item.mentorName}}</text>
+        </view>
+        <view class="motivation-content">{{item.content}}</view>
+        <view class="motivation-images" wx:if="{{item.images.length > 0}}">
+          <image 
+            wx:for="{{item.images}}" 
+            wx:for-item="image" 
+            wx:key="*this" 
+            src="{{image}}" 
+            mode="aspectFill"
+            bindtap="previewImage"
+            data-urls="{{item.images}}"
+            data-current="{{image}}"
+          ></image>
+        </view>
+        <text class="motivation-time">{{item.time}}</text>
+      </view>
+    </view>
 
     <!-- 加载更多 -->
-      <view wx:if="{{hasMore}}" class="loading-more">
-          <text>加载中...</text>
-      </view>
-      <view wx:else class="no-more">
-          <text>没有更多数据了</text>
-      </view>
+    <view wx:if="{{hasMore}}" class="loading-more">
+      <text>加载中...</text>
+    </view>
+    <view wx:else class="no-more">
+      <text>没有更多数据了</text>
+    </view>
   </scroll-view>
   
-  <!-- <scroll-view scroll-x :show-scrollbar="false" enhanced class="list">
-    <view>{{currentTab}}</view>
-    <text class="section-title">激励师</text>
-    <text class="section-desc">(立即加入，瓜分奖励)</text>
-  </scroll-view> -->
-
-  <!-- 激励师横向列表 -->
-  <!-- <view wx:if="{{currentTab === 0}}" class="mentors-section">
-    <view class="section-header">
-      <view class="title-group">
-        <text class="section-title">激励师</text>
-        <text class="section-desc">(立即加入，瓜分奖励)</text>
-      </view>
-      <view class="join-mentor-btn" bindtap="handleJoinMentor">加入</view>
-    </view>
-    <scroll-view scroll-x :show-scrollbar="false" enhanced class="mentors-list">
-      <view class="mentor-item" wx:for="{{mentors}}" wx:key="id">
-        <image class="mentor-avatar" src="{{item.avatar}}" mode="aspectFill"></image>
-        <text class="mentor-name">{{item.name}}</text>
-      </view>
-    </scroll-view>
-  </view> -->
-
   <!-- 打卡按钮/状态 -->
   <!-- <view class="checkin-section">
     <block wx:if="{{!hasJoined}}">
