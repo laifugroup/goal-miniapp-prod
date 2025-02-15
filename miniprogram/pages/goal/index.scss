@@ -114,7 +114,7 @@
 .tabs {
   display: flex;
   background: #fff;
-  padding: 0 30rpx;
+  padding: 0 24rpx;
   border-bottom: 1rpx solid #f0f0f0;
 
   .tab-item {
@@ -135,7 +135,7 @@
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
-        width: 40rpx;
+        width: 48rpx;
         height: 4rpx;
         background: #1890ff;
         border-radius: 2rpx;
@@ -450,6 +450,8 @@
     image {
       width: calc((100% - 24rpx) / 3);  // 宽度减去两个间距后平分成3份
       aspect-ratio: 1/1; /* 关键属性：强制宽高比1:1 */
+      // 兼容性处理（可选）
+      height: auto !important; 
       border-radius: 8rpx;
       object-fit: cover; // 确保图片填充方式正确
     }
@@ -501,9 +503,12 @@
 
     image {
       width: calc((100% - 24rpx) / 3);
-      height: calc((100% - 24rpx) / 3);
+      aspect-ratio: 1; // 简写形式
+          // 兼容性处理（可选）
+      height: auto !important; 
       border-radius: 8rpx;
       object-fit: cover;
+   
     }
   }
 
@@ -516,17 +521,17 @@
   }
 }
 
-.record-images,
-.motivation-images {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12rpx;
-  margin-bottom: 40rpx;
+// .record-images,
+// .motivation-images {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 12rpx;
+//   margin-bottom: 40rpx;
 
-  image {
-    width: calc((100% - 24rpx) / 3);  // 宽度减去两个间距后平分成3份
-    aspect-ratio: 1/1; /* 关键属性：强制宽高比1:1 */
-    border-radius: 8rpx;
-    object-fit: cover;
-  }
-}
+//   image {
+//     width: calc((100% - 24rpx) / 3);  // 宽度减去两个间距后平分成3份
+//     aspect-ratio: 1/1; /* 关键属性：强制宽高比1:1 */
+//     border-radius: 8rpx;
+//     object-fit: cover;
+//   }
+// }
