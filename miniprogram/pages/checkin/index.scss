@@ -83,25 +83,37 @@
   font-size: 12px;
   color: #666;
 }
-
-
 .footer {
   position: fixed;
   bottom: 32px;  // 调整底部距离
   right: 16px;   // 调整右侧距离
-  background: #07c160;
+  z-index: 1000;
+}
+.submit-text {
+  color: #07c160;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 16px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000; // 确保浮动按钮在最上层
+  background: white;
+  display: inline-block;
 }
 
+.submit-text[disabled] {
+  color: #ccc;
+  cursor: not-allowed;
+}
 .submit-btn {
-  background: transparent; // 按钮背景透明，使用父容器背景
+  background: #07c160;
   color: white;
   font-size: 16px;
   border: none;
   outline: none;
   cursor: pointer;
+  padding: 8px 16px;  // 添加内边距
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .submit-btn[disabled] {

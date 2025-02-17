@@ -57,19 +57,15 @@
           <text class="btn-text">添加素材</text>
         </view>
       </view>
-
-      <!-- 底部占位，防止内容被按钮遮挡 -->
-      <view class="footer-placeholder"></view>
     </view>
   </scroll-view>
-  <!-- 提交按钮 -->
+  <!-- 提交按钮 disabled="{{!textContent && mediaList.length === 0}}" -->
   <view class="footer">
-    <button 
-      class="submit-btn" 
+    <text 
+      class="submit-text" 
       bindtap="submitCheckin"
-      disabled="{{!textContent && mediaList.length === 0}}"
     >
       提交打卡
-    </button>
+    </text>
   </view>
 </view>
