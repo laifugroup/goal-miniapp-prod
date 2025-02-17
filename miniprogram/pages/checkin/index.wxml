@@ -1,70 +1,75 @@
-<view class="checkin_container">
-  <!-- 标签页 -->
-  <view class="tabs">
-    <view class="tab-item {{currentTab === 0 ? 'active' : ''}}"
-      bindtap="switchTab"
-      data-index="0">
-      我的目标
-      <view wx:if="{{uncheckedCount > 0}}" class="badge">
-        {{uncheckedCount > 99 ? '99+' : uncheckedCount}}
-      </view>
-    </view>
-    <view class="tab-item {{currentTab === 1 ? 'active' : ''}}"
-      bindtap="switchTab"
-      data-index="1">
-      我激励的
-      <view wx:if="{{reminderCount > 0}}" class="badge">
-        {{reminderCount > 99 ? '99+' : reminderCount}}
-      </view>
-    </view>
-  </view>
-
-  <!-- 列表区域 -->
-  <scroll-view class="list-container"
+<view class="page-container">
+  <scroll-view 
     scroll-y 
-    refresher-enabled="{{false}}"
-    refresher-triggered="{{refreshing}}"
-    bindscrolltolower="onReachBottom"
+    class="scroll-area"
   >
-    <block wx:for="{{checkinList}}" wx:key="id">
-      <view class="list-item" bindtap="checkinDetail">
-        <view class="item-content">
-          <view class="item-creator">
-            <text class="creator-name">{{item.creator.name}}</text>
-            <text class="create-date">{{item.createDate}}</text>
-            <text class="create-text">创建了目标</text>
-          </view>
-          <text class="item-title">{{item.title}}</text>
-          <view class="progress-info">
-            <view class="progress-bar">
-              <view class="progress-inner" style="width: {{(item.currentDay/item.totalDays * 100)}}%"></view>
-            </view>
-            <view class="progress-text">
-              <text class="current">{{item.currentDay}}</text>
-              <text class="separator">/</text>
-              <text class="total">{{item.totalDays}}天</text>
-            </view>
+    <view class="checkin-container">
+      <!-- 任务信息头部 -->
+      <view class="task-header">
+        <view class="user-info">
+          <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
+          <view class="info-content">
+            <text class="username">{{userInfo.nickName|| '呜呜呜呜'}}</text>
+            <text class="goal-name">{{goalInfo.name|| '呜呜呜呜22'}}</text>
           </view>
         </view>
-        <view class="item-right">
-          <view class="status-group">
-            <text class="today-text">今日</text>
-            <view class="item-status {{item.checked ? 'checked' : 'unchecked'}}">
-              {{item.checked ? '已打卡' : '未打卡'}}
-            </view>
-          </view>
+        <view class="task-info">
+          <text class="task-title">{{taskInfo.title}}</text>
+          <text class="task-desc">{{taskInfo.description}}</text>
         </view>
       </view>
-    </block>
-
-    <!-- 加载更多 -->
-      <view wx:if="{{hasMore}}" class="loading-more">
-          <text>加载中...</text>
+      
+      <!-- 文字输入区域 -->
+      <textarea 
+        class="input-area" 
+        placeholder="记录你的打卡内容..." 
+        value="{{textContent}}" 
+        bindinput="onInput"
+        auto-height
+      />
+      
+      <!-- 媒体选择区域 -->
+      <view class="media-container">
+        <block wx:for="{{mediaList}}" wx:key="tempFilePath">
+          <view class="media-item">
+            <image 
+              wx:if="{{item.type === 'image'}}" 
+              src="{{item.tempFilePath}}" 
+              mode="aspectFill"
+              bindtap="previewMedia"
+              data-index="{{index}}"
+            />
+            <video 
+              wx:if="{{item.type === 'video'}}" 
+              src="{{item.tempFilePath}}" 
+              controls
+            />
+            <view class="delete-btn" bindtap="removeMedia" data-index="{{index}}">×</view>
+          </view>
+        </block>
+        
+        <view 
+          class="add-btn" 
+          bindtap="chooseMedia"
+          wx:if="{{mediaList.length < 9}}"
+        >
+          <text class="plus-text">+</text>
+          <text class="btn-text">添加素材</text>
+        </view>
       </view>
-      <view wx:else class="no-more">
-          <text>没有更多数据了</text>
-      </view>
 
-
+      <!-- 底部占位，防止内容被按钮遮挡 -->
+      <view class="footer-placeholder"></view>
+    </view>
   </scroll-view>
+  <!-- 提交按钮 -->
+  <view class="footer">
+    <button 
+      class="submit-btn" 
+      bindtap="submitCheckin"
+      disabled="{{!textContent && mediaList.length === 0}}"
+    >
+      提交打卡
+    </button>
+  </view>
 </view>

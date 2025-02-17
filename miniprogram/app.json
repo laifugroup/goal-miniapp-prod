@@ -1,11 +1,12 @@
 {
-  "entryPagePath": "pages/launch/index",
+  "entryPagePath": "pages/checkin/index",
   "pages": [
     "pages/launch/index",
     "pages/settings/index",
     "pages/calendar/index",
     "pages/login/index",
     "pages/square/index",
+    "pages/active/index",
     "pages/checkin/index",
     "pages/message/index",
     "pages/profile/index",
@@ -49,7 +50,7 @@
         "selectedIconPath": "assets/images/tab/square-active.png"
       },
       {
-        "pagePath": "pages/checkin/index",
+        "pagePath": "pages/active/index",
         "text": "激励",
         "iconPath": "assets/images/tab/checkin.png",
         "selectedIconPath": "assets/images/tab/checkin-active.png"

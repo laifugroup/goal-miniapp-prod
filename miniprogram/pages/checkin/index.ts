@@ -1,117 +1,105 @@
-interface Creator {
-  name: string;
-  avatar?: string;
-}
-
-interface CheckinItem {
-  id: number;
-  title: string;
-  creator: Creator;
-  createDate: string;
-  checked: boolean;
-  currentDay: number;
-  totalDays: number;
-  progress?: number; // 进度百分比
-}
-
 Page({
-    data: {
-      currentTab: 0, // 当前选中的 tab
-      checkinList: [] as CheckinItem[], // 打卡列表
-      page: 1,
-      refreshing: false,
-      hasMore: true,
-      uncheckedCount:11,
-      reminderCount:22
+  data: {
+    textContent: '',
+    mediaList: [] as Array<{ tempFilePath: string; type: 'image' | 'video' }>,
+    userInfo: {
+      avatarUrl: 'https://wx2.sinaimg.cn/mw690/006GUdCXly1hqiu8wmoe5j31hc1hcwjx.jpg',
+      nickName: '-'
     },
-  
-    onLoad() {
-      this.loadData();
+    goalInfo: {
+      name: '~'
     },
-  
-    // 切换 tab
-    switchTab(e: WechatMiniprogram.TouchEvent) {
-      const index = e.currentTarget.dataset.index;
-      this.setData({
-        currentTab: index,
-        page: 1,
-        checkinList: [],
-        hasMore: true
-      });
-      this.loadData();
-    },
-  
-    // 加载数据
-    async loadData() {
-      if (this.data.refreshing || !this.data.hasMore) return;
-      this.setData({ refreshing: true });
-     try{
-          // 模拟请求
-      const newData = await this.mockRequest();
-      this.setData({
-        checkinList: this.data.page === 1 ? newData : [...this.data.checkinList, ...newData],
-        refreshing: false,
-        hasMore: this.data.page<=2
-      });
-     }catch(error){
-        wx.showToast({
-            title: '加载失败',
-            icon: 'error'
-          });
-     }
-     finally{
-         wx.stopPullDownRefresh()
-     }
-    },
-  
-    // 下拉刷新
-    onPullDownRefresh() {
-        console.log("下拉刷新")
-      this.setData({
-        page: 1,
-      });
-      this.loadData();
-    },
-  
-    // 上拉加载更多
-    onReachBottom() {
-        console.log("上拉加载更多")
-      if (!this.data.hasMore) return;
-      this.setData({ page: this.data.page + 1 });
-      this.loadData();
-    },
-  
+    taskInfo: {
+      title: '~',
+      description: '~'
+    }
+  },
 
-    checkinDetail() {
-      wx.navigateTo({
-        url: '/pages/goal/index'
-      });
-    },
-    
-  
-    // 修改模拟请求数据
-    mockRequest(): Promise<CheckinItem[]> {
-      return new Promise(resolve => {
-        setTimeout(() => {
-          const data = Array.from({ length: 10 }).map((_, i) => {
-            const totalDays = 21; // 固定21天
-            const currentDay = Math.floor(Math.random() * (totalDays + 1)); // 随机当前天数
-            
-            return {
-              id: Date.now() + i,
-              title: `每日晨跑5公里 ${this.data.page * 10 + i}`,
-              creator: {
-                name: '张三',  // 这里可以是动态数据
-              },
-              createDate: '2024-01-10',
-              checked: Math.random() > 0.5, // 随机打卡状态
-              currentDay,
-              totalDays,
-              progress: Math.floor((currentDay / totalDays) * 100) // 计算进度
-            };
-          });
-          resolve(data);
-        }, 500);
+  onLoad(options: { taskId?: string }) {
+    options.taskId='1'
+    // 从options或其他接口获取任务信息
+    if (options.taskId) {
+      this.loadTaskInfo(options.taskId);
+    } else {
+      // 处理taskId不存在的情况
+      wx.showToast({
+        title: '任务ID不存在',
+        icon: 'error'
       });
     }
-  });
+  },
+
+  async loadTaskInfo(taskId: string) {
+    // TODO: 调用接口获取任务详情
+    // 这里先模拟数据
+    this.setData({
+      userInfo: {
+        avatarUrl: 'https://wx2.sinaimg.cn/mw690/006GUdCXly1hqiu8wmoe5j31hc1hcwjx.jpg',
+        nickName: '用户名'
+      },
+      goalInfo: {
+        name: '目标名称'
+      },
+      taskInfo: {
+        title: '任务标题',
+        description: '任务描述信息'
+      }
+    });
+  },
+
+  onInput(e: WechatMiniprogram.Input) {
+    this.setData({ textContent: e.detail.value });
+  },
+  async chooseMedia() {
+    const res = await wx.chooseMedia({
+      count: 9 - this.data.mediaList.length,
+      mediaType: ['image', 'video'],
+      sourceType: ['album', 'camera'],
+      maxDuration: 30
+    });
+
+    const newMedia = res.tempFiles.map(file => ({
+      tempFilePath: file.tempFilePath,
+      type: file.fileType as 'image' | 'video'
+    }));
+
+    this.setData({
+      mediaList: [...this.data.mediaList, ...newMedia]
+    });
+  },
+
+  removeMedia(e: WechatMiniprogram.Touch) {
+    const index = e.currentTarget.dataset.index;
+    const newList = this.data.mediaList.filter((_, i) => i !== index);
+    this.setData({ mediaList: newList });
+  },
+
+  previewMedia(e: WechatMiniprogram.Touch) {
+    const index = e.currentTarget.dataset.index;
+    const urls = this.data.mediaList
+      .filter(item => item.type === 'image')
+      .map(item => item.tempFilePath);
+
+    wx.previewImage({
+      current: urls[index],
+      urls
+    });
+  },
+
+  submitCheckin() {
+    if (!this.data.textContent && this.data.mediaList.length === 0) {
+      wx.showToast({ title: '请填写内容或上传文件', icon: 'none' });
+      return;
+    }
+
+    // 这里添加实际提交逻辑
+    wx.showLoading({ title: '提交中...' });
+    
+    // 模拟提交
+    setTimeout(() => {
+      wx.hideLoading();
+      wx.navigateTo({ url: '/pages/checkin-list/index' });
+      this.setData({ textContent: '', mediaList: [] });
+    }, 1500);
+  }
+});

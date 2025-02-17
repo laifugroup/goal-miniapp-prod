@@ -1,7 +1,4 @@
 {
-  "navigationBarTitleText": "目标",
-  "usingComponents": {},
-  "onReachBottomDistance": 50,
-  "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
+  "navigationBarTitleText": "打卡",
+  "usingComponents": {}
 }
