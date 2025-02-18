@@ -78,6 +78,9 @@
 
 .stat-item {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .stat-item .num {
@@ -85,11 +88,13 @@
   color: #333;
   font-weight: bold;
   margin-bottom: 8rpx;
+  line-height: 1;
 }
 
 .stat-item .label {
   font-size: 24rpx;
   color: #999;
+  line-height: 1;
 }
 
 /* 标签页 */
