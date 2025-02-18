@@ -67,9 +67,16 @@
     <view class="task-list" wx:if="{{currentTab === 0}}">
       <view class="task-item" wx:for="{{tasks}}" wx:key="id">
         <view class="task-content">
-          <text class="task-title">#{{index + 1}} {{item.title}}</text>
-          <text class="checkin-count">已打卡 {{item.checkinCount}} 次</text>
-          <text class="create-time">{{item.decomposeTime}}创建</text>
+          <view class="task-main">
+            <text class="task-title">#{{index + 1}} {{item.title}}</text>
+            <view class="task-meta">
+              <text class="checkin-count">已打卡 {{item.checkinCount}} 次</text>
+              <text class="create-time">{{item.decomposeTime}}创建</text>
+            </view>
+          </view>
+        </view>
+        <view class="task-status {{item.checked ? 'checked' : 'unchecked'}}">
+          {{item.checked ? '已打卡' : '未打卡'}}
         </view>
       </view>
     </view>
