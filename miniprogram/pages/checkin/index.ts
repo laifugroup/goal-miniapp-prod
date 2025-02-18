@@ -16,7 +16,7 @@ Page({
   },
 
   onLoad(options: { taskId?: string }) {
-    options.taskId='1'
+    options.taskId='123'
     // 从options或其他接口获取任务信息
     if (options.taskId) {
       this.loadTaskInfo(options.taskId);
@@ -35,14 +35,14 @@ Page({
     this.setData({
       userInfo: {
         avatarUrl: 'https://wx2.sinaimg.cn/mw690/006GUdCXly1hqiu8wmoe5j31hc1hcwjx.jpg',
-        nickName: '用户名'
+        nickName: '李四'
       },
       goalInfo: {
-        name: '目标名称'
+        name: '30天减重10kg'
       },
       taskInfo: {
-        title: '任务标题',
-        description: '任务描述信息'
+        title: '30天减重10kg',
+        description: '每天100个俯卧撑'
       }
     });
   },

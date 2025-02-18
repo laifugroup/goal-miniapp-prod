@@ -1,7 +1,38 @@
-.checkin-container {
-  padding: 16px;
+.page-container {
+  padding: 0px;
   height: 100vh;
   background: #f5f5f5;
+}
+
+
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+}
+
+.scroll-area {
+  flex: 1;
+  height: 0;
+}
+.checkin-container {
+  padding: 8px;
+}
+.task-header {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.content-area {
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
 }
 
 .input-area {
@@ -22,7 +53,6 @@
   gap: 8px;
   width: 100%;
 }
-
 .media-item {
   position: relative;
   width: calc((100% - 16px) / 3);  // 三个元素，两个间隙 (8px * 2)
@@ -76,49 +106,83 @@
   font-size: 28px;
   color: #999;
 }
-
 .btn-text {
   position: absolute;
   bottom: 10px;
   font-size: 12px;
   color: #666;
 }
-.footer {
+.actions {
   position: fixed;
-  bottom: 32px;  // 调整底部距离
-  right: 16px;   // 调整右侧距离
+  bottom: 16px;
+  right: 8px;
   z-index: 1000;
-}
-.submit-text {
-  color: #07c160;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 8px 16px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  background: white;
-  display: inline-block;
-}
+  transform: translate(-50%, -50%);
+  background: transparent; // 确保背景透明，仅用于定位
+  }
+  .submit-checkin {
+    color: #fff;
+    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background: #07c160;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    width: auto;  // 确保宽度自动适应内容
+  }
 
-.submit-text[disabled] {
-  color: #ccc;
-  cursor: not-allowed;
-}
-.submit-btn {
-  background: #07c160;
-  color: white;
-  font-size: 16px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 8px 16px;  // 添加内边距
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
 
-.submit-btn[disabled] {
-  background: #ccc;
-  cursor: not-allowed;
+.task-header {
+  margin-bottom: 16px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+.info-content {
+  display: flex;
+  flex-direction: column;
+}
+.username {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+.goal-name {
+  font-size: 14px;
+  color: #666;
+}
+.task-info {
+  border-top: 1px solid #f5f5f5;
+  padding-top: 12px;
+}
+.task-title {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+.task-desc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
 }
 .task-header {
   margin-bottom: 16px;
@@ -127,42 +191,35 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
-
 .user-info {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
 }
-
 .avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 12px;
 }
-
 .info-content {
   display: flex;
   flex-direction: column;
 }
-
 .username {
   font-size: 16px;
   font-weight: 500;
   color: #333;
   margin-bottom: 4px;
 }
-
 .goal-name {
   font-size: 14px;
   color: #666;
 }
-
 .task-info {
   border-top: 1px solid #f5f5f5;
   padding-top: 12px;
 }
-
 .task-title {
   display: block;
   font-size: 16px;
@@ -170,7 +227,6 @@
   color: #333;
   margin-bottom: 4px;
 }
-
 .task-desc {
   font-size: 14px;
   color: #666;

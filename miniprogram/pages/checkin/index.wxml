@@ -1,71 +1,79 @@
 <view class="page-container">
-  <scroll-view 
+ <scroll-view 
     scroll-y 
     class="scroll-area"
   >
-    <view class="checkin-container">
-      <!-- 任务信息头部 -->
-      <view class="task-header">
-        <view class="user-info">
-          <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
-          <view class="info-content">
-            <text class="username">{{userInfo.nickName|| '呜呜呜呜'}}</text>
-            <text class="goal-name">{{goalInfo.name|| '呜呜呜呜22'}}</text>
-          </view>
-        </view>
-        <view class="task-info">
-          <text class="task-title">{{taskInfo.title}}</text>
-          <text class="task-desc">{{taskInfo.description}}</text>
-        </view>
-      </view>
-      
-      <!-- 文字输入区域 -->
-      <textarea 
-        class="input-area" 
-        placeholder="记录你的打卡内容..." 
-        value="{{textContent}}" 
-        bindinput="onInput"
-        auto-height
-      />
-      
-      <!-- 媒体选择区域 -->
-      <view class="media-container">
-        <block wx:for="{{mediaList}}" wx:key="tempFilePath">
-          <view class="media-item">
-            <image 
-              wx:if="{{item.type === 'image'}}" 
-              src="{{item.tempFilePath}}" 
-              mode="aspectFill"
-              bindtap="previewMedia"
-              data-index="{{index}}"
-            />
-            <video 
-              wx:if="{{item.type === 'video'}}" 
-              src="{{item.tempFilePath}}" 
-              controls
-            />
-            <view class="delete-btn" bindtap="removeMedia" data-index="{{index}}">×</view>
-          </view>
-        </block>
-        
-        <view 
-          class="add-btn" 
-          bindtap="chooseMedia"
-          wx:if="{{mediaList.length < 9}}"
-        >
-          <text class="plus-text">+</text>
-          <text class="btn-text">添加素材</text>
-        </view>
+ <view class="checkin-container">
+<!-- 任务信息头部 -->
+  <view class="task-header">
+    <view class="user-info">
+      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill" />
+      <view class="info-content">
+        <text class="username">{{userInfo.nickName|| '呜呜呜呜'}}</text>
+        <text class="goal-name">{{goalInfo.name|| '呜呜呜呜22'}}</text>
       </view>
     </view>
-  </scroll-view>
-  <!-- 提交按钮 disabled="{{!textContent && mediaList.length === 0}}" -->
-  <view class="footer">
-    <text 
-      class="submit-text" 
-      bindtap="submitCheckin"
-    >
-      提交打卡
-    </text>
+    <view class="task-info">
+      <text class="task-title">{{taskInfo.title}}</text>
+      <text class="task-desc">{{taskInfo.description}}</text>
+    </view>
   </view>
+  
+  <!-- 输入和媒体区域 -->
+  <view class="content-area">
+    <!-- 文字输入区域 -->
+    <textarea 
+      class="input-area" 
+      placeholder="记录你的打卡内容..." 
+      value="{{textContent}}" 
+      bindinput="onInput"
+      auto-height
+    />
+    
+    <!-- 媒体选择区域 -->
+    <view class="media-container">
+      <block wx:for="{{mediaList}}" wx:key="tempFilePath">
+        <view class="media-item">
+          <image 
+            wx:if="{{item.type === 'image'}}" 
+            src="{{item.tempFilePath}}" 
+            mode="aspectFill"
+            bindtap="previewMedia"
+            data-index="{{index}}"
+          />
+          <video 
+            wx:if="{{item.type === 'video'}}" 
+            src="{{item.tempFilePath}}" 
+            controls
+          />
+          <view class="delete-btn" bindtap="removeMedia" data-index="{{index}}">×</view>
+        </view>
+      </block>
+      
+      <view 
+        class="add-btn gradient-bg" 
+        bindtap="chooseMedia"
+        wx:if="{{mediaList.length < 9}}"
+      >
+        <view class="plus-icon">
+          <view class="vertical-line"></view>
+          <view class="horizontal-line"></view>
+        </view>
+        <text class="plus-text">+</text>
+        <text class="btn-text">添加素材</text>
+      </view>
+    </view>
+  </view>
+  
+
+
+</view>
+</scroll-view>
+
+
+  <!-- 提交按钮 -->
+  <view class="actions">
+    <button class="submit-checkin" bindtap="submitCheckin">提交</button>
+  </view>
+  
 </view>
