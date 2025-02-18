@@ -213,6 +213,13 @@ interface IMentor {
       }
     },
   
+
+    handleTaskCheckin(e: WechatMiniprogram.TouchEvent) {
+      const taskId = e.currentTarget.dataset.taskId;
+      wx.navigateTo({
+        url: `/pages/checkin/index?taskId=${taskId}`
+      });
+    },
     // 打卡
     async handleCheckin() {
       if (this.data.todayChecked) {
