@@ -75,8 +75,11 @@
             </view>
           </view>
         </view>
-        <view class="task-status {{item.checked ? 'checked' : 'unchecked'}}" bindtap="handleTaskCheckin" data-task-id="{{item.id}}">
-          {{item.checked ? '已打卡' : '未打卡'}}
+        <view class="task-status-wrapper">
+          <text class="task-status-label">今日</text>
+          <view class="task-status {{item.checked ? 'checked' : 'unchecked'}}" bindtap="handleTaskCheckin" data-task-id="{{item.id}}">
+            {{item.checked ? '已打卡' : '未打卡'}}
+          </view>
         </view>
       </view>
     </view>
