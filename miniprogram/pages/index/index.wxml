@@ -21,8 +21,18 @@
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </block>
     </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
+    <view class="tabs">
+      <view class="tab-item {{currentTab === item.id ? 'active' : ''}}" wx:for="{{tabs}}" wx:key="id" bindtap="switchTab" data-id="{{item.id}}">
+        {{item.name}}
+      </view>
+    </view>
+
+    <view class="list-container">
+      <!-- 根据 currentTab 在这里显示不同的列表 -->
+      <view wx:if="{{currentTab === 1}}">健康目标列表</view>
+      <view wx:if="{{currentTab === 2}}">学习目标列表</view>
+      <view wx:if="{{currentTab === 3}}">工作目标列表</view>
+      <view wx:if="{{currentTab === 4}}">生活习惯列表</view>
     </view>
   </view>
 </scroll-view>

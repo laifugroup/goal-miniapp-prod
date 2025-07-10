@@ -4,7 +4,8 @@ import { Banner, QuickAction } from '../../utils/types'; // 导入类型
 Page({
     data: {
         banners: [] as Banner[], // 存储 banner 数据
-        quickActions: []as QuickAction[], // 存储快捷按钮数据
+        tabs: [], // 存储标签页数据
+        currentTab: 1, // 当前选中的标签页
         checkinList: [] as CheckinItem[], // 打卡列表
         page: 1,
         refreshing: false,
@@ -13,8 +14,8 @@ Page({
 
     onLoad() {
         this.fetchBanners();
-        this.setQuickActions(); // 设置快捷按钮
-        this.loadData()
+        this.setTabs(); // 设置标签页
+        this.loadData();
     },
 
     async fetchBanners() {
@@ -83,22 +84,27 @@ Page({
           });
     },
 
-    setQuickActions() {
-        const quickActions: QuickAction[] = [
-            { id: 'target', title: '目标激励', icon: '🎯', path: '/pages/target/index' },
-            { id: 'weight', title: '庆典活动', icon: '⚖️', path: '/pages/weight/index' },
-            //{ id: 'muscle', title: '增肌计划', icon: '💪', path: '/pages/muscle/index' },
-            { id: 'start', title: '开始训练', icon: '🏃', path: '/pages/training/index' },
-            { id: 'nutrition', title: '营养指导', icon: '🥗', path: '/pages/nutrition/index' } ,
-           // { id: 'cardio', title: '有氧训练', icon: '🏋️', path: '/pages/cardio/index' },
-           // { id: 'yoga', title: '瑜伽课程', icon: '🧘', path: '/pages/yoga///index' },
-           // { id: 'sleep', title: '睡眠管理', icon: '😴', path: '/pages/sleep/index' },
-            { id: 'progress', title: '进度追踪', icon: '📈', path: '/pages/progress/index' },
-          //  { id: 'settings', title: '设置', icon: '⚙️', path: '/pages/settings/index' }
+    setTabs() {
+        const tabs = [
+            { id: 1, name: '健康目标' },
+            { id: 2, name: '学习目标' },
+            { id: 3, name: '工作目标' },
+            { id: 4, name: '生活习惯' }
         ];
-        this.setData({
-            quickActions // 设置快捷按钮数据
-        });
+        this.setData({ tabs });
+    },
+
+    switchTab(e: any) {
+        const id = e.currentTarget.dataset.id;
+        if (this.data.currentTab !== id) {
+            this.setData({
+                currentTab: id,
+                page: 1,
+                checkinList: [],
+                hasMore: true
+            });
+            this.loadData();
+        }
     },
 
 

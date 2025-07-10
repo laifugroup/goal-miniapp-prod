@@ -14,15 +14,12 @@
         </swiper>
     </view>
 
-    <view class="quick-actions">
-        <view class="quick-actions-grid">
-            <block wx:for="{{quickActions}}" wx:key="id">
-                <view class="quick-action-item" bindtap="navigateTo" data-path="{{item.path}}">
-                    <text class="icon">{{item.icon}}</text>
-                    <text class="title">{{item.title}}</text>
-                </view>
-            </block>
+    <view class="tabs">
+      <block wx:for="{{tabs}}" wx:key="id">
+        <view class="tab-item {{currentTab === item.id ? 'active' : ''}}" bindtap="switchTab" data-id="{{item.id}}">
+          {{item.name}}
         </view>
+      </block>
     </view>
     
       <!-- 列表区域 -->
